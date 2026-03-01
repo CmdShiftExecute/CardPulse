@@ -1,0 +1,611 @@
+/* ── Theme Color Variables ────────────────────────────────────────────── */
+/* Colors stored as RGB channels (space-separated) for Tailwind opacity  */
+/* modifier support. Usage: rgb(var(--color-xxx) / <alpha>)              */
+
+/* Default: Sage Dark — matches the original hardcoded palette exactly   */
+:root {
+  /* Backgrounds (layered depth) */
+  --color-base: 11 14 19;
+  --color-surface-1: 18 22 29;
+  --color-surface-2: 26 31 43;
+  --color-surface-3: 34 40 56;
+  --color-border: 42 49 69;
+  --color-border-hover: 58 66 96;
+
+  /* Primary Accent — Sage Green */
+  --color-sage-200: 200 232 212;
+  --color-sage-300: 163 212 184;
+  --color-sage-400: 126 184 158;
+  --color-sage-500: 90 154 122;
+
+  /* Secondary Accent — Seafoam */
+  --color-seafoam-200: 180 222 216;
+  --color-seafoam-300: 142 202 194;
+  --color-seafoam-400: 107 176 168;
+
+  /* Tertiary Accent — Warm Sand */
+  --color-sand-200: 232 220 192;
+  --color-sand-300: 216 196 154;
+  --color-sand-400: 196 170 120;
+
+  /* Chart Colors (ordered for visual harmony) */
+  --color-chart-1: 126 184 158;
+  --color-chart-2: 107 176 168;
+  --color-chart-3: 196 170 120;
+  --color-chart-4: 139 157 195;
+  --color-chart-5: 184 160 200;
+  --color-chart-6: 168 192 176;
+  --color-chart-7: 200 184 160;
+  --color-chart-8: 144 168 184;
+
+  /* Status Colors */
+  --color-success: 125 211 168;
+  --color-warning: 212 184 120;
+  --color-danger: 200 112 112;
+  --color-info: 107 176 168;
+
+  /* Text */
+  --color-text-primary: 228 226 222;
+  --color-text-secondary: 138 144 160;
+  --color-text-muted: 85 92 112;
+  --color-text-on-accent: 11 14 19;
+}
+
+/* ── Sage Light ──────────────────────────────────────────────────────── */
+[data-theme="sage"][data-mode="light"] {
+  --color-base: 245 243 239;
+  --color-surface-1: 255 255 255;
+  --color-surface-2: 240 237 232;
+  --color-surface-3: 232 228 223;
+  --color-border: 214 210 204;
+  --color-border-hover: 192 188 182;
+
+  --color-sage-200: 232 245 236;
+  --color-sage-300: 168 214 182;
+  --color-sage-400: 90 154 122;
+  --color-sage-500: 68 126 96;
+
+  --color-seafoam-200: 216 240 236;
+  --color-seafoam-300: 126 186 178;
+  --color-seafoam-400: 80 144 136;
+
+  --color-sand-200: 240 232 216;
+  --color-sand-300: 196 170 120;
+  --color-sand-400: 160 136 88;
+
+  --color-chart-1: 90 154 122;
+  --color-chart-2: 80 144 136;
+  --color-chart-3: 160 136 88;
+  --color-chart-4: 107 125 163;
+  --color-chart-5: 152 128 168;
+  --color-chart-6: 120 148 132;
+  --color-chart-7: 168 152 128;
+  --color-chart-8: 100 124 140;
+
+  --color-success: 46 148 90;
+  --color-warning: 176 136 64;
+  --color-danger: 184 74 74;
+  --color-info: 80 144 136;
+
+  --color-text-primary: 26 31 43;
+  --color-text-secondary: 90 96 112;
+  --color-text-muted: 148 154 168;
+  --color-text-on-accent: 255 255 255;
+}
+
+/* ── Midnight Dark ───────────────────────────────────────────────────── */
+[data-theme="midnight"][data-mode="dark"] {
+  --color-base: 10 15 26;
+  --color-surface-1: 16 22 38;
+  --color-surface-2: 22 30 50;
+  --color-surface-3: 30 40 64;
+  --color-border: 38 50 80;
+  --color-border-hover: 56 72 110;
+
+  --color-sage-200: 190 220 240;
+  --color-sage-300: 140 186 220;
+  --color-sage-400: 107 163 214;
+  --color-sage-500: 76 130 180;
+
+  --color-seafoam-200: 180 210 230;
+  --color-seafoam-300: 120 170 200;
+  --color-seafoam-400: 88 140 178;
+
+  --color-sand-200: 220 210 190;
+  --color-sand-300: 190 175 145;
+  --color-sand-400: 165 148 115;
+
+  --color-chart-1: 107 163 214;
+  --color-chart-2: 88 140 178;
+  --color-chart-3: 165 148 115;
+  --color-chart-4: 140 160 200;
+  --color-chart-5: 170 140 190;
+  --color-chart-6: 130 168 180;
+  --color-chart-7: 180 165 140;
+  --color-chart-8: 120 150 175;
+
+  --color-success: 100 200 150;
+  --color-warning: 200 175 110;
+  --color-danger: 200 100 100;
+  --color-info: 88 140 178;
+
+  --color-text-primary: 220 225 235;
+  --color-text-secondary: 130 145 170;
+  --color-text-muted: 70 85 110;
+  --color-text-on-accent: 10 15 26;
+}
+
+/* ── Midnight Light ──────────────────────────────────────────────────── */
+[data-theme="midnight"][data-mode="light"] {
+  --color-base: 240 242 245;
+  --color-surface-1: 255 255 255;
+  --color-surface-2: 235 238 242;
+  --color-surface-3: 225 228 235;
+  --color-border: 205 210 220;
+  --color-border-hover: 180 186 200;
+
+  --color-sage-200: 220 232 245;
+  --color-sage-300: 140 175 210;
+  --color-sage-400: 70 120 175;
+  --color-sage-500: 50 95 145;
+
+  --color-seafoam-200: 210 228 240;
+  --color-seafoam-300: 100 150 180;
+  --color-seafoam-400: 65 115 148;
+
+  --color-sand-200: 240 232 215;
+  --color-sand-300: 180 160 120;
+  --color-sand-400: 145 125 85;
+
+  --color-chart-1: 70 120 175;
+  --color-chart-2: 65 115 148;
+  --color-chart-3: 145 125 85;
+  --color-chart-4: 100 118 158;
+  --color-chart-5: 135 112 155;
+  --color-chart-6: 95 135 148;
+  --color-chart-7: 155 140 110;
+  --color-chart-8: 85 112 135;
+
+  --color-success: 40 140 85;
+  --color-warning: 170 130 55;
+  --color-danger: 180 70 70;
+  --color-info: 65 115 148;
+
+  --color-text-primary: 20 28 45;
+  --color-text-secondary: 80 92 115;
+  --color-text-muted: 140 150 170;
+  --color-text-on-accent: 255 255 255;
+}
+
+/* ── Cyberpunk Dark ──────────────────────────────────────────────────── */
+[data-theme="cyberpunk"][data-mode="dark"] {
+  --color-base: 0 0 0;
+  --color-surface-1: 10 10 14;
+  --color-surface-2: 18 18 24;
+  --color-surface-3: 28 28 36;
+  --color-border: 40 40 55;
+  --color-border-hover: 65 40 80;
+
+  --color-sage-200: 255 180 210;
+  --color-sage-300: 255 100 160;
+  --color-sage-400: 255 45 120;
+  --color-sage-500: 210 30 95;
+
+  --color-seafoam-200: 180 255 255;
+  --color-seafoam-300: 80 230 240;
+  --color-seafoam-400: 0 240 255;
+
+  --color-sand-200: 255 230 180;
+  --color-sand-300: 255 200 100;
+  --color-sand-400: 255 170 40;
+
+  --color-chart-1: 255 45 120;
+  --color-chart-2: 0 240 255;
+  --color-chart-3: 255 170 40;
+  --color-chart-4: 160 80 255;
+  --color-chart-5: 255 100 160;
+  --color-chart-6: 80 255 200;
+  --color-chart-7: 255 230 80;
+  --color-chart-8: 100 180 255;
+
+  --color-success: 0 255 140;
+  --color-warning: 255 200 40;
+  --color-danger: 255 50 80;
+  --color-info: 0 240 255;
+
+  --color-text-primary: 240 240 245;
+  --color-text-secondary: 150 150 170;
+  --color-text-muted: 80 80 100;
+  --color-text-on-accent: 0 0 0;
+}
+
+/* ── Cyberpunk Light ─────────────────────────────────────────────────── */
+[data-theme="cyberpunk"][data-mode="light"] {
+  --color-base: 248 246 250;
+  --color-surface-1: 255 255 255;
+  --color-surface-2: 242 240 248;
+  --color-surface-3: 235 232 242;
+  --color-border: 215 210 228;
+  --color-border-hover: 190 180 210;
+
+  --color-sage-200: 255 210 228;
+  --color-sage-300: 230 60 120;
+  --color-sage-400: 200 30 95;
+  --color-sage-500: 165 20 75;
+
+  --color-seafoam-200: 200 245 248;
+  --color-seafoam-300: 0 180 195;
+  --color-seafoam-400: 0 145 158;
+
+  --color-sand-200: 255 235 200;
+  --color-sand-300: 210 150 30;
+  --color-sand-400: 175 120 10;
+
+  --color-chart-1: 200 30 95;
+  --color-chart-2: 0 145 158;
+  --color-chart-3: 175 120 10;
+  --color-chart-4: 115 55 195;
+  --color-chart-5: 200 60 120;
+  --color-chart-6: 0 170 120;
+  --color-chart-7: 195 170 40;
+  --color-chart-8: 50 130 210;
+
+  --color-success: 0 160 85;
+  --color-warning: 195 150 20;
+  --color-danger: 210 40 60;
+  --color-info: 0 145 158;
+
+  --color-text-primary: 15 15 20;
+  --color-text-secondary: 80 75 95;
+  --color-text-muted: 155 150 170;
+  --color-text-on-accent: 255 255 255;
+}
+
+/* ── Molten Dark ─────────────────────────────────────────────────────── */
+[data-theme="molten"][data-mode="dark"] {
+  --color-base: 26 18 16;
+  --color-surface-1: 34 24 20;
+  --color-surface-2: 44 32 28;
+  --color-surface-3: 56 42 36;
+  --color-border: 72 52 44;
+  --color-border-hover: 96 68 58;
+
+  --color-sage-200: 240 195 180;
+  --color-sage-300: 225 140 115;
+  --color-sage-400: 212 99 74;
+  --color-sage-500: 180 75 52;
+
+  --color-seafoam-200: 240 215 175;
+  --color-seafoam-300: 225 185 120;
+  --color-seafoam-400: 212 160 74;
+
+  --color-sand-200: 245 225 190;
+  --color-sand-300: 230 200 145;
+  --color-sand-400: 212 175 100;
+
+  --color-chart-1: 212 99 74;
+  --color-chart-2: 212 160 74;
+  --color-chart-3: 212 175 100;
+  --color-chart-4: 180 120 90;
+  --color-chart-5: 195 130 140;
+  --color-chart-6: 200 150 110;
+  --color-chart-7: 220 185 130;
+  --color-chart-8: 170 140 120;
+
+  --color-success: 140 200 130;
+  --color-warning: 230 190 80;
+  --color-danger: 220 80 70;
+  --color-info: 212 160 74;
+
+  --color-text-primary: 240 230 222;
+  --color-text-secondary: 170 145 130;
+  --color-text-muted: 100 80 70;
+  --color-text-on-accent: 26 18 16;
+}
+
+/* ── Molten Light ────────────────────────────────────────────────────── */
+[data-theme="molten"][data-mode="light"] {
+  --color-base: 255 248 240;
+  --color-surface-1: 255 255 255;
+  --color-surface-2: 250 244 236;
+  --color-surface-3: 242 235 226;
+  --color-border: 225 215 205;
+  --color-border-hover: 205 192 180;
+
+  --color-sage-200: 248 215 200;
+  --color-sage-300: 200 105 78;
+  --color-sage-400: 175 72 48;
+  --color-sage-500: 148 55 35;
+
+  --color-seafoam-200: 248 232 200;
+  --color-seafoam-300: 190 150 80;
+  --color-seafoam-400: 160 120 55;
+
+  --color-sand-200: 250 240 215;
+  --color-sand-300: 195 165 100;
+  --color-sand-400: 165 135 72;
+
+  --color-chart-1: 175 72 48;
+  --color-chart-2: 160 120 55;
+  --color-chart-3: 165 135 72;
+  --color-chart-4: 148 95 68;
+  --color-chart-5: 165 100 110;
+  --color-chart-6: 170 120 80;
+  --color-chart-7: 185 155 100;
+  --color-chart-8: 138 112 95;
+
+  --color-success: 50 148 80;
+  --color-warning: 185 148 40;
+  --color-danger: 195 60 50;
+  --color-info: 160 120 55;
+
+  --color-text-primary: 40 28 22;
+  --color-text-secondary: 105 85 72;
+  --color-text-muted: 165 150 138;
+  --color-text-on-accent: 255 255 255;
+}
+
+/* ── Mono Dark ───────────────────────────────────────────────────────── */
+[data-theme="mono"][data-mode="dark"] {
+  --color-base: 0 0 0;
+  --color-surface-1: 14 14 14;
+  --color-surface-2: 24 24 24;
+  --color-surface-3: 36 36 36;
+  --color-border: 50 50 50;
+  --color-border-hover: 75 75 75;
+
+  --color-sage-200: 220 220 220;
+  --color-sage-300: 190 190 190;
+  --color-sage-400: 160 160 160;
+  --color-sage-500: 130 130 130;
+
+  --color-seafoam-200: 210 210 210;
+  --color-seafoam-300: 175 175 175;
+  --color-seafoam-400: 145 145 145;
+
+  --color-sand-200: 200 200 200;
+  --color-sand-300: 170 170 170;
+  --color-sand-400: 140 140 140;
+
+  --color-chart-1: 200 200 200;
+  --color-chart-2: 170 170 170;
+  --color-chart-3: 140 140 140;
+  --color-chart-4: 115 115 115;
+  --color-chart-5: 90 90 90;
+  --color-chart-6: 185 185 185;
+  --color-chart-7: 155 155 155;
+  --color-chart-8: 125 125 125;
+
+  --color-success: 160 220 180;
+  --color-warning: 220 200 140;
+  --color-danger: 220 130 130;
+  --color-info: 145 145 145;
+
+  --color-text-primary: 240 240 240;
+  --color-text-secondary: 160 160 160;
+  --color-text-muted: 90 90 90;
+  --color-text-on-accent: 0 0 0;
+}
+
+/* ── Mono Light ──────────────────────────────────────────────────────── */
+[data-theme="mono"][data-mode="light"] {
+  --color-base: 255 255 255;
+  --color-surface-1: 248 248 248;
+  --color-surface-2: 240 240 240;
+  --color-surface-3: 230 230 230;
+  --color-border: 210 210 210;
+  --color-border-hover: 185 185 185;
+
+  --color-sage-200: 230 230 230;
+  --color-sage-300: 100 100 100;
+  --color-sage-400: 60 60 60;
+  --color-sage-500: 40 40 40;
+
+  --color-seafoam-200: 225 225 225;
+  --color-seafoam-300: 110 110 110;
+  --color-seafoam-400: 75 75 75;
+
+  --color-sand-200: 235 235 235;
+  --color-sand-300: 120 120 120;
+  --color-sand-400: 85 85 85;
+
+  --color-chart-1: 60 60 60;
+  --color-chart-2: 90 90 90;
+  --color-chart-3: 120 120 120;
+  --color-chart-4: 150 150 150;
+  --color-chart-5: 45 45 45;
+  --color-chart-6: 75 75 75;
+  --color-chart-7: 105 105 105;
+  --color-chart-8: 135 135 135;
+
+  --color-success: 50 140 80;
+  --color-warning: 170 145 50;
+  --color-danger: 190 65 65;
+  --color-info: 75 75 75;
+
+  --color-text-primary: 15 15 15;
+  --color-text-secondary: 90 90 90;
+  --color-text-muted: 170 170 170;
+  --color-text-on-accent: 255 255 255;
+}
+
+/* ── Terminal Dark ───────────────────────────────────────────────────── */
+[data-theme="terminal"][data-mode="dark"] {
+  --color-base: 10 10 10;
+  --color-surface-1: 16 16 16;
+  --color-surface-2: 22 22 22;
+  --color-surface-3: 32 32 32;
+  --color-border: 45 60 45;
+  --color-border-hover: 60 85 60;
+
+  --color-sage-200: 160 255 160;
+  --color-sage-300: 80 230 80;
+  --color-sage-400: 51 255 51;
+  --color-sage-500: 30 200 30;
+
+  --color-seafoam-200: 140 240 200;
+  --color-seafoam-300: 60 210 150;
+  --color-seafoam-400: 30 190 120;
+
+  --color-sand-200: 200 230 160;
+  --color-sand-300: 170 210 100;
+  --color-sand-400: 140 190 60;
+
+  --color-chart-1: 51 255 51;
+  --color-chart-2: 30 190 120;
+  --color-chart-3: 140 190 60;
+  --color-chart-4: 80 200 180;
+  --color-chart-5: 100 230 100;
+  --color-chart-6: 60 220 160;
+  --color-chart-7: 160 210 80;
+  --color-chart-8: 40 180 140;
+
+  --color-success: 51 255 51;
+  --color-warning: 200 220 60;
+  --color-danger: 255 80 80;
+  --color-info: 30 190 120;
+
+  --color-text-primary: 51 255 51;
+  --color-text-secondary: 30 180 30;
+  --color-text-muted: 20 100 20;
+  --color-text-on-accent: 10 10 10;
+}
+
+/* ── Terminal Light ──────────────────────────────────────────────────── */
+[data-theme="terminal"][data-mode="light"] {
+  --color-base: 245 250 245;
+  --color-surface-1: 255 255 255;
+  --color-surface-2: 238 245 238;
+  --color-surface-3: 228 238 228;
+  --color-border: 195 215 195;
+  --color-border-hover: 165 190 165;
+
+  --color-sage-200: 215 240 215;
+  --color-sage-300: 40 140 40;
+  --color-sage-400: 20 110 20;
+  --color-sage-500: 10 85 10;
+
+  --color-seafoam-200: 210 240 228;
+  --color-seafoam-300: 30 130 85;
+  --color-seafoam-400: 15 105 65;
+
+  --color-sand-200: 230 240 210;
+  --color-sand-300: 100 130 45;
+  --color-sand-400: 75 105 25;
+
+  --color-chart-1: 20 110 20;
+  --color-chart-2: 15 105 65;
+  --color-chart-3: 75 105 25;
+  --color-chart-4: 30 120 100;
+  --color-chart-5: 40 140 40;
+  --color-chart-6: 20 130 85;
+  --color-chart-7: 95 125 35;
+  --color-chart-8: 25 110 80;
+
+  --color-success: 20 130 40;
+  --color-warning: 140 155 20;
+  --color-danger: 200 50 50;
+  --color-info: 15 105 65;
+
+  --color-text-primary: 10 45 10;
+  --color-text-secondary: 35 85 35;
+  --color-text-muted: 140 180 140;
+  --color-text-on-accent: 245 250 245;
+}
+
+/* ── Tailwind Layers ─────────────────────────────────────────────────── */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    border-color: rgb(var(--color-border));
+  }
+
+  body {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer utilities {
+  /* Safe area bottom padding for mobile bottom nav */
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  /* Button press micro-interaction */
+  .press-scale {
+    transition: transform 0.1s ease-out;
+  }
+  .press-scale:active {
+    transform: scale(0.97);
+  }
+
+  /* Card hover lift */
+  .hover-lift {
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+  }
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Global themed scrollbars — all scrollable areas match the theme */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(var(--color-border)) rgb(var(--color-surface-1));
+  }
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  *::-webkit-scrollbar-track {
+    background: rgb(var(--color-surface-1));
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: rgb(var(--color-border));
+    border-radius: 9999px;
+    border: 2px solid rgb(var(--color-surface-1));
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(var(--color-border-hover));
+  }
+  *::-webkit-scrollbar-corner {
+    background: rgb(var(--color-surface-1));
+  }
+
+  /* Thin scrollbar for scrollable panels */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(var(--color-border)) transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: rgb(var(--color-border));
+    border-radius: 9999px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(var(--color-border-hover));
+  }
+
+  /* Payment ticker scroll animation */
+  .ticker-scroll {
+    animation: ticker-scroll var(--ticker-duration, 35s) linear infinite;
+  }
+  .ticker-scroll:hover {
+    animation-play-state: paused;
+  }
+  @keyframes ticker-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+}
