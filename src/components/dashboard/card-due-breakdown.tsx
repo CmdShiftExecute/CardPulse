@@ -26,6 +26,7 @@ interface CardCycleData {
   statementDay: number;
   dueDay: number;
   cycleSpend: number;
+  prevCycleSpend: number;
   emiMonthly: number;
   transactionCount: number;
   currentCyclePayment: CyclePaymentStatus | null;
@@ -66,7 +67,8 @@ function CardDueBreakdown({ cards, onPaymentChange }: CardDueBreakdownProps) {
 
     for (const card of cards) {
       const cycle = getCycleInfo(card as CardCycleConfig);
-      const estimatedBill = card.cycleSpend + card.emiMonthly;
+      const currentEstimatedBill = card.cycleSpend + card.emiMonthly;
+      const prevEstimatedBill = card.prevCycleSpend + card.emiMonthly;
 
       // Use the most imminent due date per card
       // Prefer prev cycle if still upcoming (it's more urgent)
@@ -94,7 +96,7 @@ function CardDueBreakdown({ cards, onPaymentChange }: CardDueBreakdownProps) {
           cardName: card.cardName,
           lastFour: card.lastFour,
           color: card.color,
-          estimatedBill,
+          estimatedBill: prevEstimatedBill,
           dueDateStr: cycle.prevCycleDueDateStr,
           daysUntil: cycle.daysUntilPrevDue,
           isPreviousCycle: true,
@@ -118,7 +120,7 @@ function CardDueBreakdown({ cards, onPaymentChange }: CardDueBreakdownProps) {
           cardName: card.cardName,
           lastFour: card.lastFour,
           color: card.color,
-          estimatedBill,
+          estimatedBill: currentEstimatedBill,
           dueDateStr: cycle.dueDateStr,
           daysUntil: cycle.daysUntilDue,
           isPreviousCycle: false,

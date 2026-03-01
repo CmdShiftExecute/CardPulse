@@ -25,6 +25,7 @@ interface TickerCardData {
   statementDay: number;
   dueDay: number;
   cycleSpend: number;
+  prevCycleSpend: number;
   emiMonthly: number;
   transactionCount: number;
   currentCyclePayment: CyclePaymentStatus | null;
@@ -89,7 +90,8 @@ function PaymentTicker() {
 
     for (const card of cards) {
       const cycle = getCycleInfo(card as CardCycleConfig);
-      const estimatedBill = card.cycleSpend + card.emiMonthly;
+      const currentEstimatedBill = card.cycleSpend + card.emiMonthly;
+      const prevEstimatedBill = card.prevCycleSpend + card.emiMonthly;
 
       // Previous cycle due (if still upcoming)
       if (cycle.daysUntilPrevDue > 0) {
@@ -98,7 +100,7 @@ function PaymentTicker() {
           cardName: card.cardName,
           lastFour: card.lastFour,
           color: card.color,
-          amount: estimatedBill,
+          amount: prevEstimatedBill,
           dueDateStr: cycle.prevCycleDueDateStr,
           daysUntil: cycle.daysUntilPrevDue,
           isPaid: card.prevCyclePayment?.isPaid ?? false,
@@ -113,7 +115,7 @@ function PaymentTicker() {
           cardName: card.cardName,
           lastFour: card.lastFour,
           color: card.color,
-          amount: estimatedBill,
+          amount: currentEstimatedBill,
           dueDateStr: cycle.dueDateStr,
           daysUntil: cycle.daysUntilDue,
           isPaid: card.currentCyclePayment?.isPaid ?? false,

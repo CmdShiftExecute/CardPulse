@@ -21,6 +21,7 @@ export interface CardCycleSpend {
   statementDay: number;
   dueDay: number;
   cycleSpend: number;
+  prevCycleSpend: number;
   emiMonthly: number;
   transactionCount: number;
   currentCyclePayment: CyclePaymentStatus | null;
@@ -147,6 +148,15 @@ export function getCardCycleData(): CardCycleSpend[] {
       ? { id: prevPaymentRow.id, isPaid: prevPaymentRow.isPaid === 1, amount: prevPaymentRow.amount, paidAt: prevPaymentRow.paidAt }
       : null;
 
+    // Previous cycle spend (for showing correct amount on prev cycle due dates)
+    const prevCycleSpendRow = sqlite
+      .prepare(
+        `SELECT COALESCE(SUM(amount), 0) as total
+         FROM transactions
+         WHERE card_id = ? AND transaction_date >= ? AND transaction_date <= ?`
+      )
+      .get(card.id, prevStartStr, prevEndStr) as { total: number };
+
     return {
       cardId: card.id,
       cardName: card.name,
@@ -159,6 +169,7 @@ export function getCardCycleData(): CardCycleSpend[] {
       statementDay: card.statementDay,
       dueDay: card.dueDay,
       cycleSpend: cycleSpendRow.total,
+      prevCycleSpend: prevCycleSpendRow.total,
       emiMonthly: emiRow.total,
       transactionCount: cycleSpendRow.cnt,
       currentCyclePayment,

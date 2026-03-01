@@ -67,6 +67,7 @@ interface CardCycleData {
   statementDay: number;
   dueDay: number;
   cycleSpend: number;
+  prevCycleSpend: number;
   emiMonthly: number;
   transactionCount: number;
   currentCyclePayment: CyclePaymentStatus | null;

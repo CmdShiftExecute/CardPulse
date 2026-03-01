@@ -26,6 +26,7 @@ interface CardCycleData {
   statementDay: number;
   dueDay: number;
   cycleSpend: number;
+  prevCycleSpend: number;
   emiMonthly: number;
   transactionCount: number;
   currentCyclePayment: CyclePaymentStatus | null;
@@ -91,7 +92,8 @@ function PaymentDueSummary({ cards, onPaymentChange }: PaymentDueSummaryProps) {
 
     for (const card of cards) {
       const cycle = getCycleInfo(card as CardCycleConfig);
-      const estimatedBill = card.cycleSpend + card.emiMonthly;
+      const currentEstimatedBill = card.cycleSpend + card.emiMonthly;
+      const prevEstimatedBill = card.prevCycleSpend + card.emiMonthly;
 
       // Previous cycle due date (if still upcoming)
       if (cycle.daysUntilPrevDue > 0) {
@@ -118,7 +120,7 @@ function PaymentDueSummary({ cards, onPaymentChange }: PaymentDueSummaryProps) {
           cardName: card.cardName,
           lastFour: card.lastFour,
           color: card.color,
-          estimatedBill,
+          estimatedBill: prevEstimatedBill,
           dueDate: cycle.prevCycleDueDate,
           dueDateStr: cycle.prevCycleDueDateStr,
           daysUntil: cycle.daysUntilPrevDue,
@@ -142,7 +144,7 @@ function PaymentDueSummary({ cards, onPaymentChange }: PaymentDueSummaryProps) {
           cardName: card.cardName,
           lastFour: card.lastFour,
           color: card.color,
-          estimatedBill,
+          estimatedBill: currentEstimatedBill,
           dueDate: cycle.dueDate,
           dueDateStr: cycle.dueDateStr,
           daysUntil: cycle.daysUntilDue,
