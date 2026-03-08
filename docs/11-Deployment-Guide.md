@@ -8,6 +8,7 @@
 
 - 💻 [Local Development](#-local-development)
 - 🏗️ [Production Build](#️-production-build)
+- 🐳 [Docker Deployment](#-docker-deployment)
 - 🔐 [Environment Variables](#-environment-variables)
 - 🗄️ [Database Management](#️-database-management)
 - 🌐 [Deploying to a VPS/Server](#-deploying-to-a-vpsserver)
@@ -29,8 +30,8 @@
 
 ```bash
 # 1️⃣ Clone the repository
-git clone https://github.com/CmdShiftExecute/Personal-Projects.git
-cd Personal-Projects/cardpulse
+git clone https://github.com/CmdShiftExecute/CardPulse.git
+cd CardPulse
 
 # 2️⃣ Install dependencies
 npm install
@@ -78,6 +79,95 @@ npm start
 | 📜 **JS** | Tree-shaken, code-split, and minified |
 
 > 🖥️ The production server runs on **http://localhost:3000** by default. Use the `PORT` environment variable or a reverse proxy to change this.
+
+---
+
+## 🐳 Docker Deployment
+
+Docker is the easiest way to run CardPulse without installing Node.js. The included `Dockerfile` uses a **multi-stage build** that handles `better-sqlite3` native compilation automatically.
+
+### 🚀 Quick Start
+
+```bash
+# 1️⃣ Clone the repository
+git clone https://github.com/CmdShiftExecute/CardPulse.git
+cd CardPulse
+
+# 2️⃣ Build the image
+docker build -t cardpulse .
+
+# 3️⃣ Run the container
+docker run -d \
+  --name cardpulse \
+  -p 3000:3000 \
+  -v $(pwd)/data:/app/data \
+  cardpulse
+```
+
+🌐 Open **http://localhost:3000** in your browser.
+
+### 📦 How the Dockerfile Works
+
+The build uses **3 stages** to keep the final image small (~150 MB):
+
+| Stage | What It Does |
+|:------|:-------------|
+| 1️⃣ **deps** | Installs `node_modules` with native build tools (`python3`, `make`, `g++`) for `better-sqlite3` |
+| 2️⃣ **builder** | Runs `npm run build` to produce a Next.js standalone bundle |
+| 3️⃣ **runner** | Copies only the standalone output + static assets into a clean Alpine image |
+
+The production image uses Next.js `standalone` output mode — the entire app runs with `node server.js`, no `node_modules` required.
+
+### 💾 Data Persistence
+
+The `-v $(pwd)/data:/app/data` flag **mounts your local `data/` folder** into the container. This is critical — without it, your SQLite database lives inside the container and is lost when the container stops.
+
+| Volume Mount | Effect |
+|:-------------|:-------|
+| ✅ `-v $(pwd)/data:/app/data` | Data persists on your machine, survives container restarts |
+| ❌ No volume mount | Data is lost when the container stops |
+| ✅ `-v cardpulse-data:/app/data` | Named volume (Docker-managed, persists across rebuilds) |
+
+### 🔧 Common Commands
+
+| Command | Description |
+|:--------|:------------|
+| `docker build -t cardpulse .` | Build (or rebuild) the image |
+| `docker run -d --name cardpulse -p 3000:3000 -v $(pwd)/data:/app/data cardpulse` | Start in background |
+| `docker logs cardpulse` | View logs |
+| `docker stop cardpulse` | Stop the container |
+| `docker start cardpulse` | Restart a stopped container |
+| `docker rm cardpulse` | Remove the container (data is safe in the volume) |
+
+### 🔄 Updating After `git pull`
+
+```bash
+# Pull latest changes
+git pull
+
+# Rebuild and restart
+docker build -t cardpulse .
+docker stop cardpulse && docker rm cardpulse
+docker run -d --name cardpulse -p 3000:3000 -v $(pwd)/data:/app/data cardpulse
+```
+
+> 💡 Your database is safe — the volume mount ensures data persists across rebuilds.
+
+### 🌐 Docker on a VPS
+
+Docker works well for deploying CardPulse on a remote server. Combine with a reverse proxy for HTTPS:
+
+```bash
+# Run on a VPS with auto-restart
+docker run -d \
+  --name cardpulse \
+  --restart unless-stopped \
+  -p 3000:3000 \
+  -v /home/user/cardpulse-data:/app/data \
+  cardpulse
+```
+
+Then use the [Nginx reverse proxy config](#-nginx-reverse-proxy) from the VPS section below to add SSL.
 
 ---
 
@@ -208,8 +298,8 @@ CardPulse runs well on any Linux server with **Node.js 18+**. It serves well as 
 
 ```bash
 # 1️⃣ Clone on the server
-git clone https://github.com/CmdShiftExecute/Personal-Projects.git
-cd Personal-Projects/cardpulse
+git clone https://github.com/CmdShiftExecute/CardPulse.git
+cd CardPulse
 
 # 2️⃣ Install and build
 npm install
@@ -347,46 +437,6 @@ CardPulse is designed as a **local-first** application. SQLite is the entire bac
 | 📄 `cardpulse.db-shm` | Shared memory index for WAL |
 
 > 💡 The `-wal` and `-shm` files are **normal** and expected. They are automatically managed by SQLite. When backing up by file copy, include all three files for a consistent snapshot — or use the in-app backup, which checkpoints the WAL first.
-
-### 🐳 Docker Deployment (Optional)
-
-If you prefer containerization, here is a minimal `Dockerfile`:
-
-```dockerfile
-FROM node:18-alpine
-
-WORKDIR /app
-
-COPY package*.json ./
-RUN npm ci --production
-
-COPY . .
-RUN npm run build
-
-# Create data directory for SQLite
-RUN mkdir -p /app/data
-
-EXPOSE 3000
-
-ENV DB_PATH=/app/data/cardpulse.db
-CMD ["npm", "start"]
-```
-
-Run with a persistent volume for the database:
-
-```bash
-# Build the image
-docker build -t cardpulse .
-
-# Run with persistent data volume
-docker run -d \
-  --name cardpulse \
-  -p 3000:3000 \
-  -v cardpulse-data:/app/data \
-  cardpulse
-```
-
-> 🔑 **Key:** The `-v cardpulse-data:/app/data` flag ensures your database persists across container restarts and updates.
 
 ---
 

@@ -8,6 +8,8 @@
 
 - 🔧 [Prerequisites](#-prerequisites)
 - 📦 [Installation](#-installation)
+  - [Option A: npm](#option-a-npm)
+  - [Option B: Docker](#option-b-docker)
 - 🌱 [First Run](#-first-run)
 - 🔐 [Creating Your PIN](#-creating-your-pin)
 - 🔓 [Disabling the PIN](#-disabling-the-pin)
@@ -19,11 +21,12 @@
 
 ## 🔧 Prerequisites
 
-| Requirement | Version | Notes |
-|:-----------:|:-------:|:------|
-| **Node.js** | 18+ | [Download here](https://nodejs.org/) |
-| **npm** | 9+ | Included with Node.js |
-| **Git** | Any | To clone the repository |
+You need **one** of the following:
+
+| Option | Requirement | Notes |
+|:------:|:-----------:|:------|
+| **A** | **Node.js** 18+ & **npm** 9+ | [Download here](https://nodejs.org/) |
+| **B** | **Docker** | [Download here](https://www.docker.com/products/docker-desktop/) — no Node.js needed |
 
 > 💡 **Zero external dependencies.** No cloud services, API keys, databases, or accounts needed. CardPulse runs 100% on your machine.
 
@@ -31,10 +34,12 @@
 
 ## 📦 Installation
 
+### Option A: npm
+
 ```bash
 # 1️⃣ Clone the repository
-git clone https://github.com/CmdShiftExecute/Personal-Projects.git
-cd Personal-Projects/cardpulse
+git clone https://github.com/CmdShiftExecute/CardPulse.git
+cd CardPulse
 
 # 2️⃣ Install dependencies
 npm install
@@ -46,6 +51,26 @@ npm run dev
 🌐 Open **http://localhost:3000** in your browser.
 
 > 🏗️ **Production build:** Run `npm run build` followed by `npm start` for an optimized production server.
+
+### Option B: Docker
+
+```bash
+# 1️⃣ Clone the repository
+git clone https://github.com/CmdShiftExecute/CardPulse.git
+cd CardPulse
+
+# 2️⃣ Build the image
+docker build -t cardpulse .
+
+# 3️⃣ Run the container
+docker run -p 3000:3000 -v $(pwd)/data:/app/data cardpulse
+```
+
+🌐 Open **http://localhost:3000** in your browser.
+
+> 💾 **Data persistence:** The `-v $(pwd)/data:/app/data` flag mounts your local `data/` folder into the container, so your SQLite database persists across container restarts and updates. Without this flag, your data would be lost when the container stops.
+
+> 🔄 **Rebuilding after updates:** After pulling new changes (`git pull`), rebuild with `docker build -t cardpulse .` and restart the container.
 
 ---
 
