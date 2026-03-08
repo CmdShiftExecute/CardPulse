@@ -435,9 +435,9 @@ export function seedDatabase() {
       }).run();
     }
 
-    // Seed default settings
+    // Seed default settings (OR IGNORE for idempotent re-runs)
     for (const [key, value] of Object.entries(DEFAULT_SETTINGS)) {
-      db.insert(settings).values({ key, value }).run();
+      sqlite.prepare("INSERT OR IGNORE INTO settings (key, value) VALUES (?, ?)").run(key, value);
     }
 
     sqlite.exec("COMMIT");
