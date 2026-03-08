@@ -10,3 +10,5 @@ cardstatements
 .DS_Store
 *.md
 !README.md
+docs
+LICENSE

@@ -23,6 +23,8 @@ RUN npm run build
 # ── Stage 3: Production image ──
 FROM node:20-alpine AS runner
 
+RUN apk add --no-cache libstdc++
+
 WORKDIR /app
 
 ENV NODE_ENV=production
