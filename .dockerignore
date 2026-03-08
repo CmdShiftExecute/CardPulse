@@ -1,0 +1,12 @@
+node_modules
+.next
+data/*.db
+data/*.db-journal
+data/*.db-wal
+data/*.db-shm
+cardstatements
+.claude
+.git
+.DS_Store
+*.md
+!README.md
