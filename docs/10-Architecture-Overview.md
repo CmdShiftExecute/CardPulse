@@ -46,8 +46,10 @@ cardpulse/
 ├── 📄 package.json
 ├── 📄 tsconfig.json
 ├── 📄 tailwind.config.ts                   # Theme CSS var integration (cv() helper)
-├── 📄 next.config.ts
+├── 📄 next.config.mjs                      # Standalone output for Docker
 ├── 📄 drizzle.config.ts
+├── 📄 Dockerfile                           # Multi-stage Docker build
+├── 📄 .dockerignore                        # Docker build context exclusions
 ├── 📄 .env.local                           # DB_PATH=./data/cardpulse.db
 │
 ├── 📂 src/

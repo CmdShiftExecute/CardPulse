@@ -181,17 +181,12 @@ A privacy-first credit card expense tracker with **smart NLP entry**, **multi-ca
 
 ## 🚀 Quick Start
 
-### Prerequisites
-
-- **Node.js** 18+ ([download](https://nodejs.org/))
-- **npm** 9+ (comes with Node.js)
-
-### Installation
+### Option 1: npm (requires Node.js)
 
 ```bash
 # Clone the repository
-git clone https://github.com/CmdShiftExecute/Personal-Projects.git
-cd Personal-Projects/cardpulse
+git clone https://github.com/CmdShiftExecute/CardPulse.git
+cd CardPulse
 
 # Install dependencies
 npm install
@@ -200,7 +195,21 @@ npm install
 npm run dev
 ```
 
+### Option 2: Docker (no Node.js required)
+
+```bash
+# Clone the repository
+git clone https://github.com/CmdShiftExecute/CardPulse.git
+cd CardPulse
+
+# Build and run
+docker build -t cardpulse .
+docker run -p 3000:3000 -v $(pwd)/data:/app/data cardpulse
+```
+
 Open **http://localhost:3000** — you'll be guided through PIN setup on first launch.
+
+> The `-v` flag mounts the `data/` folder so your SQLite database persists across container restarts.
 
 ### 🎬 First Run
 
