@@ -360,7 +360,7 @@ This project is licensed under the **MIT License** — see the [LICENSE](./LICEN
 
 **Built with** ☕ **and** 💳 **in Dubai, UAE**
 
-*CardPulse v2.0 — developed across 14+ sessions using [Claude Code](https://claude.ai/code) as an AI pair programmer.*
+*CardPulse v2.0 — built with passion across 14+ sessions.*
 
 <br />
 
