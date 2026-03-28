@@ -99,15 +99,45 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { action } = body as { action: string };
 
-    // --- auto_session: create session without PIN (only when PIN is disabled) ---
+    // --- lock: invalidate session (user wants to lock the app) ---
+    if (action === "lock") {
+      const existing = db
+        .select()
+        .from(settings)
+        .where(eq(settings.key, "session_token"))
+        .get();
+      if (existing) {
+        db.update(settings)
+          .set({ value: "" })
+          .where(eq(settings.key, "session_token"))
+          .run();
+      }
+      const response = NextResponse.json({
+        success: true,
+        data: { message: "Session locked" },
+      });
+      response.cookies.delete(SESSION_COOKIE);
+      return response;
+    }
+
+    // --- auto_session: create session without PIN (when PIN is disabled or not set) ---
     if (action === "auto_session") {
+      const pinHash = db
+        .select()
+        .from(settings)
+        .where(eq(settings.key, "pin_hash"))
+        .get();
+
       const pinEnabledRow = db
         .select()
         .from(settings)
         .where(eq(settings.key, "pin_enabled"))
         .get();
 
-      if (pinEnabledRow?.value !== "false") {
+      const hasPin = !!pinHash;
+      const pinEnabled = pinEnabledRow?.value !== "false";
+
+      if (hasPin && pinEnabled) {
         return NextResponse.json(
           { success: false, error: "PIN is enabled — authenticate with your PIN" },
           { status: 403 }

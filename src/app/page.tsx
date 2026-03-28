@@ -20,9 +20,7 @@ export default function Home() {
 
         const { hasPin, isAuthenticated, pinEnabled } = data.data;
 
-        if (!hasPin) {
-          router.replace("/setup");
-        } else if (!pinEnabled) {
+        if (!hasPin || !pinEnabled) {
           // PIN is disabled — auto-create session and go to dashboard
           if (isAuthenticated) {
             router.replace("/dashboard");
@@ -45,7 +43,17 @@ export default function Home() {
           router.replace("/dashboard");
         }
       } catch {
-        router.replace("/setup");
+        // On error, try auto-session as fallback
+        try {
+          await fetch("/api/auth", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ action: "auto_session" }),
+          });
+          router.replace("/dashboard");
+        } catch {
+          router.replace("/dashboard");
+        }
       } finally {
         setChecking(false);
       }

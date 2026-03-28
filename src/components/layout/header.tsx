@@ -1,7 +1,7 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-import { Sun, Moon, Palette } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import { Sun, Moon, Palette, Lock } from "lucide-react";
 import { useTheme, type ThemeName } from "@/components/providers/theme-provider";
 import { useState, useRef, useEffect } from "react";
 
@@ -26,13 +26,25 @@ const THEME_OPTIONS: { value: ThemeName; label: string; dot: string }[] = [
 
 function Header() {
   const pathname = usePathname();
+  const router = useRouter();
   const title = PAGE_TITLES[pathname] || "CardPulse";
   const { theme, mode, setTheme, toggleMode } = useTheme();
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [pinEnabled, setPinEnabled] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => setMounted(true), []);
+
+  // Check if PIN is enabled
+  useEffect(() => {
+    fetch("/api/auth")
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.success) setPinEnabled(data.data.hasPin && data.data.pinEnabled);
+      })
+      .catch(() => {});
+  }, []);
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -105,6 +117,24 @@ function Header() {
             <Moon className="h-4 w-4" />
           )}
         </button>
+
+        {/* Lock button — only visible when PIN protection is enabled */}
+        {pinEnabled && (
+          <button
+            onClick={async () => {
+              await fetch("/api/auth", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ action: "lock" }),
+              });
+              router.push("/lock");
+            }}
+            className="flex items-center justify-center rounded-button p-2 text-text-secondary transition-colors hover:bg-surface-3 hover:text-text-primary"
+            aria-label="Lock app"
+          >
+            <Lock className="h-4 w-4" />
+          </button>
+        )}
       </div>
     </header>
   );
