@@ -16,9 +16,9 @@ A privacy-first credit card expense tracker with **smart NLP entry**, **multi-ca
 
 <br />
 
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/new/template?template=https://github.com/CmdShiftExecute/CardPulse)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/CmdShiftExecute/CardPulse)
 
-**One click. Your own CardPulse instance in under 2 minutes.**
+**[Live Demo](https://cardpulse-lilac.vercel.app)** — See CardPulse in action with sample data.
 
 <br />
 

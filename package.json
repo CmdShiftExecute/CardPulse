@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "prebuild": "node scripts/generate-demo-db.mjs",
+    "build": "npm run prebuild && next build",
     "start": "next start",
     "lint": "next lint"
   },
