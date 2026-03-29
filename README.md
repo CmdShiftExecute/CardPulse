@@ -16,7 +16,13 @@ A privacy-first credit card expense tracker with **smart NLP entry**, **multi-ca
 
 <br />
 
-[![Deploy with Vercel](https://vercel.com/button)](https://cardpulse-lilac.vercel.app) — **🚀 [Live Demo — CardPulse in action with sample data](https://cardpulse-lilac.vercel.app)**
+[![Live Demo](https://img.shields.io/badge/▶_Live_Demo-CardPulse-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://cardpulse-lilac.vercel.app)
+
+**See CardPulse in action with sample data**
+
+<br />
+
+[![Deploy Your Own](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/CmdShiftExecute/CardPulse)
 
 <br />
 
