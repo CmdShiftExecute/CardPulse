@@ -26,6 +26,7 @@ export function GeneralSettings() {
   const [useCustom, setUseCustom] = useState(false);
   const [dateFormat, setDateFormat] = useState("DD/MM");
   const [numberFormat, setNumberFormat] = useState("comma_period");
+  const [householdIncome, setHouseholdIncome] = useState("");
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -44,6 +45,7 @@ export function GeneralSettings() {
           }
           if (s.date_format) setDateFormat(s.date_format);
           if (s.number_format) setNumberFormat(s.number_format);
+          if (s.household_income) setHouseholdIncome(s.household_income);
         }
       })
       .catch(() => {})
@@ -59,14 +61,23 @@ export function GeneralSettings() {
         setSaving(false);
         return;
       }
+      const payload: Record<string, string> = {
+        currency: currencyValue,
+        date_format: dateFormat,
+        number_format: numberFormat,
+      };
+      // Household income is optional; only send if a valid non-negative number is provided
+      const incomeTrim = householdIncome.trim();
+      if (incomeTrim !== "") {
+        const parsed = parseFloat(incomeTrim);
+        if (!Number.isNaN(parsed) && parsed >= 0) {
+          payload.household_income = String(parsed);
+        }
+      }
       const res = await fetch("/api/settings", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          currency: currencyValue,
-          date_format: dateFormat,
-          number_format: numberFormat,
-        }),
+        body: JSON.stringify(payload),
       });
       const data = await res.json();
       if (data.success) {
@@ -85,7 +96,7 @@ export function GeneralSettings() {
     } finally {
       setSaving(false);
     }
-  }, [currency, customCurrency, useCustom, dateFormat, numberFormat]);
+  }, [currency, customCurrency, useCustom, dateFormat, numberFormat, householdIncome]);
 
   if (loading) {
     return (
@@ -191,6 +202,36 @@ export function GeneralSettings() {
             </button>
           ))}
         </div>
+      </div>
+
+      {/* Household Income */}
+      <div className="space-y-3 pt-2 border-t border-border/40">
+        <div>
+          <label className="text-sm font-medium text-text-primary">Household Income (monthly)</label>
+          <p className="mt-1 text-xs text-text-secondary">
+            Used to compute your financial health score on the dashboard. The ratio of
+            your monthly commitments (EMI + fixed costs + card bills) to your income
+            determines whether the home screen shows a happy or worried face.
+          </p>
+        </div>
+        <div className="relative max-w-xs">
+          <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-xs text-text-muted">
+            {useCustom ? (customCurrency || "AED") : currency}
+          </span>
+          <input
+            type="number"
+            min="0"
+            step="0.01"
+            inputMode="decimal"
+            value={householdIncome}
+            onChange={(e) => setHouseholdIncome(e.target.value)}
+            placeholder="e.g. 25000"
+            className="w-full rounded-button border border-border bg-surface-2 pl-12 pr-3 py-2 text-sm font-mono tabular-nums text-text-primary placeholder:text-text-muted focus:border-sage-400 focus:outline-none focus:ring-1 focus:ring-sage-400"
+          />
+        </div>
+        <p className="text-[11px] text-text-muted">
+          Leave blank if you&apos;d rather not set it — the dashboard card will prompt you to add it.
+        </p>
       </div>
 
       {/* Save */}

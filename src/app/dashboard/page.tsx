@@ -13,6 +13,7 @@ import { CreditOverview } from "@/components/dashboard/credit-overview";
 import { ExportModal } from "@/components/dashboard/export-modal";
 import { PaymentDueSummary } from "@/components/dashboard/payment-due-summary";
 import { TopTransactionsEmi } from "@/components/dashboard/top-transactions-emi";
+import { FinancialHealthCard } from "@/components/dashboard/financial-health-card";
 import { CollapsibleSection } from "@/components/ui/collapsible-section";
 import { CreditCard, Download, PieChart, Receipt, ShieldCheck } from "lucide-react";
 import { motion } from "framer-motion";
@@ -207,6 +208,11 @@ export default function DashboardPage() {
                 </a>
               </div>
             </div>
+          )}
+
+          {/* Row 0: Financial Health (only when cards exist) */}
+          {data.cardCycleData.length > 0 && (
+            <FinancialHealthCard cards={data.cardCycleData} />
           )}
 
           {/* Row 1: Monthly Hero + Export Button */}

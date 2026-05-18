@@ -12,7 +12,7 @@ A privacy-first credit card expense tracker with **smart NLP entry**, **multi-ca
 [![SQLite](https://img.shields.io/badge/SQLite-Local--First-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://sqlite.org/)
 [![Recharts](https://img.shields.io/badge/Recharts-3.7-22B5BF?style=for-the-badge)](https://recharts.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-7EB89E?style=for-the-badge)](./LICENSE)
-[![Version](https://img.shields.io/badge/v2.0.0-CardPulse-C4AA78?style=for-the-badge)](./package.json)
+[![Version](https://img.shields.io/badge/v2.1.0-CardPulse-C4AA78?style=for-the-badge)](./package.json)
 
 <br />
 
@@ -100,6 +100,13 @@ A privacy-first credit card expense tracker with **smart NLP entry**, **multi-ca
 - Payment ticker with due date countdowns
 - Category & label donuts with click-to-drill
 - Credit utilization overview
+- **💚 Financial Health Card** with 6-level mood face based on debt-to-income ratio
+
+### 🌱 Survival Summary
+- New EMI-page tab: monthly cost-of-living floor
+- **EMI burden + fixed costs** combined into one number
+- **18-month projection chart** as installments roll off
+- Closure schedule of when each EMI ends
 
 </td>
 </tr>
@@ -182,6 +189,18 @@ A privacy-first credit card expense tracker with **smart NLP entry**, **multi-ca
 </details>
 
 <details>
+<summary><b>🌱 Survival Summary</b></summary>
+<br />
+<img src="public/screenshots/survival-summary.png" alt="Survival Summary" width="100%" />
+</details>
+
+<details>
+<summary><b>💚 Financial Health Card</b></summary>
+<br />
+<img src="public/screenshots/financial-health.png" alt="Financial Health Card" width="100%" />
+</details>
+
+<details>
 <summary><b>🎯 Budgets</b></summary>
 <br />
 <img src="public/screenshots/budgets.png" alt="Budgets" width="100%" />
@@ -251,6 +270,8 @@ For detailed information, refer to the guides in the [`docs/`](./docs/) folder:
 | [📥 Export Reports](./docs/09-Export-Reports.md) | All Users | XLSX export format and options |
 | [🏗️ Architecture Overview](./docs/10-Architecture-Overview.md) | Developers | Tech stack, DB schema, API routes, system design |
 | [🚢 Deployment Guide](./docs/11-Deployment-Guide.md) | Developers | Local dev, production, VPS, SQLite considerations |
+| [🌱 Survival Summary](./docs/12-Survival-Summary.md) | All Users | Monthly cost-of-living floor + 18-month EMI closure projection |
+| [💚 Financial Health Card](./docs/13-Financial-Health.md) | All Users | Dashboard mood-face card based on debt-to-income ratio |
 
 ---
 
@@ -283,8 +304,8 @@ cardpulse/
 │   ├── emis/                      #   EMI tracker
 │   ├── analytics/                 #   7-tab analytics
 │   ├── budgets/                   #   Budget management
-│   ├── settings/                  #   8-section settings
-│   └── api/                       #   19 API endpoints
+│   ├── settings/                  #   9-section settings (incl. Fixed Costs)
+│   └── api/                       #   20 API endpoints
 │
 ├── 📂 src/components/             # React components
 │   ├── ui/                        #   Reusable primitives
@@ -302,7 +323,7 @@ cardpulse/
 │   ├── cycle-utils.ts             #   Billing cycle math
 │   └── chart-utils.ts             #   Shared chart helpers
 │
-├── 📂 docs/                       # Documentation (11 guides)
+├── 📂 docs/                       # Documentation (13 guides)
 ├── 📂 data/                       # SQLite database (gitignored)
 └── 📂 drizzle/                    # Generated migrations
 ```
@@ -330,7 +351,8 @@ All settings are configurable from the Settings page:
 
 | Setting | Default | Options |
 |---------|---------|---------|
-| Currency | AED | AED, USD, EUR, GBP, INR, SAR, ... |
+| Currency | USD | USD, EUR, GBP, INR, AED, SAR, ... (or any custom 3-letter code) |
+| Household Income (monthly) | — | Optional number used by the Financial Health Card to compute commitment ratio |
 | Date Format | DD/MM | DD/MM, MM/DD |
 | Number Format | 1,234.56 | comma_period, period_comma |
 | Theme | Sage | Sage, Midnight, Cyberpunk, Molten, Mono, Terminal |
@@ -344,9 +366,9 @@ All settings are configurable from the Settings page:
 | Metric | Count |
 |--------|-------|
 | 📄 Pages | **9** (Dashboard, Transactions, Cards, EMIs, Analytics, Budgets, Settings, Lock, Setup) |
-| 🔌 API Routes | **19** (CRUD + analytics + exports + NLP + auth + settings) |
+| 🔌 API Routes | **20** (CRUD + analytics + exports + NLP + auth + settings + fixed-costs) |
 | 🧩 Components | **70+** (UI primitives, page sections, charts, forms) |
-| 🗄️ DB Tables | **11** (cards, transactions, categories, subcategories, labels, keyword_rules, emis, budgets, settings, cycle_payments, transaction_labels) |
+| 🗄️ DB Tables | **12** (cards, transactions, categories, subcategories, labels, keyword_rules, emis, budgets, settings, cycle_payments, transaction_labels, fixed_costs) |
 | 🔍 Keyword Rules | **91** pre-seeded (popular merchants, banks, services) |
 | 🏷️ Labels | **25** system labels + unlimited custom |
 | 📂 Categories | **11** main → **68** subcategories |
@@ -368,9 +390,9 @@ This project is licensed under the **MIT License** — see the [LICENSE](./LICEN
 
 <div align="center">
 
-**Built with** ☕ **and** 💳 **in Dubai, UAE**
+**Built with** ☕ **and** 💳
 
-*CardPulse v2.0 — built with passion across 14+ sessions.*
+*CardPulse v2.1 — built with passion.*
 
 <br />
 

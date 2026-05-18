@@ -8,6 +8,7 @@ import { EmiCard, type EmiCardData } from "@/components/emis/emi-card";
 import { EmiForm } from "@/components/emis/emi-form";
 import { EmiGeneratePrompt } from "@/components/emis/emi-generate-prompt";
 import { EmiSummaryStrip } from "@/components/emis/emi-summary-strip";
+import { SurvivalSummary } from "@/components/emis/survival-summary";
 import { cn, formatAmount } from "@/lib/utils";
 import {
   Plus,
@@ -15,9 +16,12 @@ import {
   TrendingUp,
   ArrowRight,
   CreditCard,
+  Wallet,
+  Layers,
 } from "lucide-react";
 import { SkeletonGrid } from "@/components/ui/skeleton";
 import { PageTransition } from "@/components/ui/page-transition";
+import { motion, AnimatePresence } from "framer-motion";
 
 /** Extended data from the API with fields needed for cycle grouping */
 interface EmiFullData extends EmiCardData {
@@ -30,11 +34,21 @@ interface EmiFullData extends EmiCardData {
   notes: string | null;
 }
 
+type TabId = "survival" | "tracker";
+
+interface TabDef {
+  id: TabId;
+  label: string;
+  icon: typeof Wallet;
+}
+
+const TABS: TabDef[] = [
+  { id: "survival", label: "Survival", icon: Wallet },
+  { id: "tracker", label: "EMI Tracker", icon: Layers },
+];
+
 /**
  * Groups EMIs by their charging timeline relative to the current billing cycle.
- * "This Cycle" = EMIs that haven't been generated yet this month (will be charged this cycle)
- * "Next Cycle" = EMIs whose next charge is the following month
- * We approximate this using monthsRemaining to give the visual distinction.
  */
 function groupEmisByCycle(emis: EmiFullData[]) {
   const now = new Date();
@@ -45,11 +59,9 @@ function groupEmisByCycle(emis: EmiFullData[]) {
 
   for (const emi of emis) {
     if (!emi.isActive) continue;
-    // If not yet generated this month → will be charged THIS cycle
     if (emi.lastGenerated !== currentYM) {
       thisCycle.push(emi);
     } else {
-      // Already generated this month → next charge is NEXT cycle
       nextCycle.push(emi);
     }
   }
@@ -57,9 +69,6 @@ function groupEmisByCycle(emis: EmiFullData[]) {
   return { thisCycle, nextCycle };
 }
 
-/**
- * Groups EMIs by card for the visual breakdown.
- */
 function groupByCard(emis: EmiFullData[]) {
   const map: Record<string, { cardName: string; cardColor: string; emis: EmiFullData[]; total: number }> = {};
   for (const emi of emis) {
@@ -74,8 +83,7 @@ function groupByCard(emis: EmiFullData[]) {
 }
 
 /**
- * CycleVisualization — The premium vertical timeline showing EMIs
- * grouped by upcoming vs next cycle with gradient orbs and separators.
+ * CycleVisualization — vertical timeline showing EMIs grouped by upcoming vs next cycle.
  */
 function CycleVisualization({ thisCycle, nextCycle }: { thisCycle: EmiFullData[]; nextCycle: EmiFullData[] }) {
   if (thisCycle.length === 0 && nextCycle.length === 0) return null;
@@ -91,7 +99,6 @@ function CycleVisualization({ thisCycle, nextCycle }: { thisCycle: EmiFullData[]
 
   return (
     <div className="relative overflow-hidden rounded-card border border-border bg-surface-1">
-      {/* Multi-gradient top bar */}
       <div className="h-1 w-full bg-gradient-to-r from-sage-400 via-seafoam-400 to-sand-400" />
 
       <div className="p-5">
@@ -103,13 +110,10 @@ function CycleVisualization({ thisCycle, nextCycle }: { thisCycle: EmiFullData[]
         </p>
 
         <div className="relative">
-          {/* Vertical timeline line */}
           <div className="absolute left-[19px] top-0 bottom-0 w-px bg-gradient-to-b from-sage-400/60 via-border to-sand-400/60" />
 
-          {/* ── THIS CYCLE SECTION ──────────────────────────── */}
           {thisCycle.length > 0 && (
             <div className="relative mb-6">
-              {/* Section header orb */}
               <div className="flex items-center gap-3 mb-4">
                 <div className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-sage-400 to-seafoam-400 shadow-lg shadow-sage-400/20">
                   <CalendarClock size={18} className="text-white" />
@@ -129,7 +133,6 @@ function CycleVisualization({ thisCycle, nextCycle }: { thisCycle: EmiFullData[]
                 </div>
               </div>
 
-              {/* EMI items with gradient orbs */}
               <div className="ml-[19px] pl-6 flex flex-col gap-3">
                 {thisCycle.map((emi) => {
                   const orbSize = grandTotal > 0
@@ -137,7 +140,6 @@ function CycleVisualization({ thisCycle, nextCycle }: { thisCycle: EmiFullData[]
                     : 24;
                   return (
                     <div key={emi.id} className="flex items-center gap-3">
-                      {/* Proportional orb */}
                       <div
                         className="rounded-full shrink-0 shadow-sm"
                         style={{
@@ -171,7 +173,6 @@ function CycleVisualization({ thisCycle, nextCycle }: { thisCycle: EmiFullData[]
             </div>
           )}
 
-          {/* ── SEPARATOR ──────────────────────────────────── */}
           {thisCycle.length > 0 && nextCycle.length > 0 && (
             <div className="relative flex items-center gap-3 my-4 ml-[19px] pl-6">
               <div className="h-px flex-1 bg-gradient-to-r from-sage-400/30 via-sand-400/40 to-transparent" />
@@ -185,10 +186,8 @@ function CycleVisualization({ thisCycle, nextCycle }: { thisCycle: EmiFullData[]
             </div>
           )}
 
-          {/* ── NEXT CYCLE SECTION ─────────────────────────── */}
           {nextCycle.length > 0 && (
             <div className="relative">
-              {/* Section header orb */}
               <div className="flex items-center gap-3 mb-4">
                 <div className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-sand-400 to-[#D4B878] shadow-lg shadow-sand-400/20">
                   <TrendingUp size={18} className="text-white" />
@@ -208,7 +207,6 @@ function CycleVisualization({ thisCycle, nextCycle }: { thisCycle: EmiFullData[]
                 </div>
               </div>
 
-              {/* EMI items */}
               <div className="ml-[19px] pl-6 flex flex-col gap-3">
                 {nextCycle.map((emi) => {
                   const orbSize = grandTotal > 0
@@ -247,7 +245,6 @@ function CycleVisualization({ thisCycle, nextCycle }: { thisCycle: EmiFullData[]
           )}
         </div>
 
-        {/* Bottom totals bar */}
         {grandTotal > 0 && (
           <div className="mt-6 pt-4 border-t border-border/40">
             <div className="flex items-center justify-between">
@@ -256,7 +253,6 @@ function CycleVisualization({ thisCycle, nextCycle }: { thisCycle: EmiFullData[]
                 {formatAmount(grandTotal)}
               </span>
             </div>
-            {/* Proportional bar */}
             <div className="flex h-2 mt-2 rounded-full overflow-hidden bg-surface-3">
               {thisCycleTotal > 0 && (
                 <div
@@ -294,10 +290,6 @@ function CycleVisualization({ thisCycle, nextCycle }: { thisCycle: EmiFullData[]
   );
 }
 
-/**
- * CardBreakdown — Visual breakdown of EMI burden per credit card.
- * Shows proportional gradient bars with card colors.
- */
 function CardBreakdown({ cardGroups }: { cardGroups: ReturnType<typeof groupByCard> }) {
   if (cardGroups.length === 0) return null;
   const maxTotal = Math.max(...cardGroups.map((g) => g.total));
@@ -334,7 +326,6 @@ function CardBreakdown({ cardGroups }: { cardGroups: ReturnType<typeof groupByCa
                     <span className="text-xs font-normal text-text-muted">/mo</span>
                   </span>
                 </div>
-                {/* Gradient bar */}
                 <div className="h-2 rounded-full bg-surface-3 overflow-hidden">
                   <div
                     className="h-full rounded-full transition-all duration-700"
@@ -354,6 +345,7 @@ function CardBreakdown({ cardGroups }: { cardGroups: ReturnType<typeof groupByCa
 }
 
 export default function EmisPage() {
+  const [activeTab, setActiveTab] = useState<TabId>("survival");
   const [activeEmis, setActiveEmis] = useState<EmiFullData[]>([]);
   const [completedEmis, setCompletedEmis] = useState<EmiFullData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -425,112 +417,151 @@ export default function EmisPage() {
   return (
     <AppShell>
       <PageTransition>
-      <div className="flex flex-col gap-6">
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h2 className="text-xl font-semibold text-text-primary">EMI Tracker</h2>
-            <p className="text-sm text-text-secondary mt-0.5">
-              Track installments and upcoming charges across your cards
-            </p>
-          </div>
-          <Button onClick={handleAddNew} size="md">
-            <Plus size={16} />
-            Add EMI
-          </Button>
-        </div>
-
-        {/* Generate prompt — appears when EMIs need generating */}
-        <EmiGeneratePrompt onGenerated={fetchEmis} />
-
-        {/* Summary strip */}
-        <EmiSummaryStrip />
-
-        {loading ? (
-          <SkeletonGrid count={3} />
-        ) : activeEmis.length === 0 ? (
-          <div className="rounded-card border border-border bg-surface-1 p-6">
-            <div className="flex flex-col items-center py-12">
-              <div className="h-16 w-16 rounded-full bg-sage-400/10 flex items-center justify-center mb-4">
-                <CalendarClock size={28} className="text-sage-400/50" />
-              </div>
-              <h3 className="text-base font-semibold text-text-primary mb-1">No active EMIs</h3>
-              <p className="text-sm text-text-muted mb-6 text-center max-w-xs">
-                Track your installment payments across all cards. Add an EMI to see cycle timelines and monthly projections.
-              </p>
-              <Button size="sm" onClick={handleAddNew}>
-                <Plus size={16} />
-                Add Your First EMI
-              </Button>
-            </div>
-          </div>
-        ) : (
-          <>
-            {/* ── Visual Dashboard Row ────────────────────── */}
-            <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
-              {/* Cycle Timeline */}
-              <CycleVisualization thisCycle={thisCycle} nextCycle={nextCycle} />
-
-              {/* Card Breakdown */}
-              <CardBreakdown cardGroups={cardGroups} />
-            </div>
-
-            {/* ── Active EMI Cards ─────────────────────────── */}
+        <div className="flex flex-col gap-6">
+          {/* Header */}
+          <div className="flex items-center justify-between">
             <div>
-              <div className="flex items-center gap-2 mb-4">
-                <div className="h-4 w-1 rounded-full bg-gradient-to-b from-sage-400 to-seafoam-400" />
-                <h3 className="text-sm font-semibold text-text-secondary uppercase tracking-wider">
-                  Active Installments
-                </h3>
-                <span className="text-xs text-text-muted">({activeEmis.length})</span>
-              </div>
-              <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
-                {activeEmis.map((emi) => (
-                  <EmiCard
-                    key={emi.id}
-                    emi={emi}
-                    onEdit={handleEdit}
-                    onMarkComplete={handleMarkComplete}
-                  />
-                ))}
-              </div>
+              <h2 className="text-xl font-semibold text-text-primary">EMIs &amp; Survival</h2>
+              <p className="text-sm text-text-secondary mt-0.5">
+                {activeTab === "survival"
+                  ? "Your monthly cost of living and how your EMI burden depletes over time"
+                  : "Track installments and upcoming charges across your cards"}
+              </p>
             </div>
-          </>
-        )}
-
-        {/* ── Completed EMIs ─────────────────────────── */}
-        {completedEmis.length > 0 && (
-          <div className="flex flex-col gap-3">
-            <button
-              onClick={() => setShowCompleted((p) => !p)}
-              className="flex items-center gap-2 text-sm font-medium text-text-muted hover:text-text-secondary transition-colors self-start"
-            >
-              <span
-                className={cn(
-                  "inline-block transition-transform duration-150",
-                  showCompleted ? "rotate-90" : ""
-                )}
-              >
-                ▶
-              </span>
-              Completed EMIs ({completedEmis.length})
-            </button>
-
-            {showCompleted && (
-              <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
-                {completedEmis.map((emi) => (
-                  <EmiCard
-                    key={emi.id}
-                    emi={emi}
-                    onEdit={handleEdit}
-                    onMarkComplete={handleMarkComplete}
-                  />
-                ))}
-              </div>
+            {activeTab === "tracker" && (
+              <Button onClick={handleAddNew} size="md">
+                <Plus size={16} />
+                Add EMI
+              </Button>
             )}
           </div>
-        )}
-      </div>
+
+          {/* Tab bar */}
+          <div className="flex items-center gap-1 rounded-card bg-surface-1 border border-border p-1 overflow-x-auto">
+            {TABS.map((tab) => {
+              const Icon = tab.icon;
+              const isActive = activeTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={cn(
+                    "flex items-center gap-2 rounded-button px-4 py-2 text-sm font-medium transition-all duration-150 whitespace-nowrap",
+                    isActive
+                      ? "bg-sage-400/15 text-sage-300"
+                      : "text-text-muted hover:text-text-secondary hover:bg-surface-2"
+                  )}
+                  aria-label={tab.label}
+                >
+                  <Icon size={16} />
+                  <span>{tab.label}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Tab content */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.2 }}
+            >
+              {activeTab === "survival" && <SurvivalSummary />}
+
+              {activeTab === "tracker" && (
+                <div className="flex flex-col gap-6">
+                  {/* Generate prompt — appears when EMIs need generating */}
+                  <EmiGeneratePrompt onGenerated={fetchEmis} />
+
+                  {/* Summary strip */}
+                  <EmiSummaryStrip />
+
+                  {loading ? (
+                    <SkeletonGrid count={3} />
+                  ) : activeEmis.length === 0 ? (
+                    <div className="rounded-card border border-border bg-surface-1 p-6">
+                      <div className="flex flex-col items-center py-12">
+                        <div className="h-16 w-16 rounded-full bg-sage-400/10 flex items-center justify-center mb-4">
+                          <CalendarClock size={28} className="text-sage-400/50" />
+                        </div>
+                        <h3 className="text-base font-semibold text-text-primary mb-1">No active EMIs</h3>
+                        <p className="text-sm text-text-muted mb-6 text-center max-w-xs">
+                          Track your installment payments across all cards. Add an EMI to see cycle timelines and monthly projections.
+                        </p>
+                        <Button size="sm" onClick={handleAddNew}>
+                          <Plus size={16} />
+                          Add Your First EMI
+                        </Button>
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
+                        <CycleVisualization thisCycle={thisCycle} nextCycle={nextCycle} />
+                        <CardBreakdown cardGroups={cardGroups} />
+                      </div>
+
+                      <div>
+                        <div className="flex items-center gap-2 mb-4">
+                          <div className="h-4 w-1 rounded-full bg-gradient-to-b from-sage-400 to-seafoam-400" />
+                          <h3 className="text-sm font-semibold text-text-secondary uppercase tracking-wider">
+                            Active Installments
+                          </h3>
+                          <span className="text-xs text-text-muted">({activeEmis.length})</span>
+                        </div>
+                        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+                          {activeEmis.map((emi) => (
+                            <EmiCard
+                              key={emi.id}
+                              emi={emi}
+                              onEdit={handleEdit}
+                              onMarkComplete={handleMarkComplete}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    </>
+                  )}
+
+                  {completedEmis.length > 0 && (
+                    <div className="flex flex-col gap-3">
+                      <button
+                        onClick={() => setShowCompleted((p) => !p)}
+                        className="flex items-center gap-2 text-sm font-medium text-text-muted hover:text-text-secondary transition-colors self-start"
+                      >
+                        <span
+                          className={cn(
+                            "inline-block transition-transform duration-150",
+                            showCompleted ? "rotate-90" : ""
+                          )}
+                        >
+                          ▶
+                        </span>
+                        Completed EMIs ({completedEmis.length})
+                      </button>
+
+                      {showCompleted && (
+                        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+                          {completedEmis.map((emi) => (
+                            <EmiCard
+                              key={emi.id}
+                              emi={emi}
+                              onEdit={handleEdit}
+                              onMarkComplete={handleMarkComplete}
+                            />
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              )}
+            </motion.div>
+          </AnimatePresence>
+        </div>
       </PageTransition>
 
       {/* Add / Edit Modal */}

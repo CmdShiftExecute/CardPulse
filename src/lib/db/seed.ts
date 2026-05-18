@@ -160,7 +160,7 @@ const KEYWORD_RULES: KeywordRuleSeed[] = [
 // All settings keys with their default values.
 // For existing users: INSERT OR IGNORE ensures new keys are added without overwriting.
 const DEFAULT_SETTINGS: Record<string, string> = {
-  currency: "AED",
+  currency: "USD",
   app_name: "CardPulse",
   date_format: "DD/MM",
   number_format: "comma_period",
@@ -313,6 +313,19 @@ function createTables() {
     CREATE TABLE IF NOT EXISTS settings (
       key             TEXT PRIMARY KEY,
       value           TEXT NOT NULL
+    );
+
+    CREATE TABLE IF NOT EXISTS fixed_costs (
+      id              INTEGER PRIMARY KEY AUTOINCREMENT,
+      name            TEXT NOT NULL,
+      monthly_amount  REAL NOT NULL,
+      icon            TEXT,
+      color           TEXT,
+      notes           TEXT,
+      sort_order      INTEGER NOT NULL DEFAULT 0,
+      is_active       INTEGER NOT NULL DEFAULT 1,
+      created_at      TEXT NOT NULL DEFAULT (datetime('now')),
+      updated_at      TEXT NOT NULL DEFAULT (datetime('now'))
     );
   `);
 }

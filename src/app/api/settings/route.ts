@@ -15,6 +15,7 @@ const PUBLIC_SETTINGS = [
   "theme",
   "color_mode",
   "first_run_complete",
+  "household_income",
 ] as const;
 
 type PublicSettingKey = (typeof PUBLIC_SETTINGS)[number];

@@ -122,3 +122,16 @@ export const settings = sqliteTable("settings", {
   key: text("key").primaryKey(),
   value: text("value").notNull(),
 });
+
+export const fixedCosts = sqliteTable("fixed_costs", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  name: text("name").notNull(),
+  monthlyAmount: real("monthly_amount").notNull(),
+  icon: text("icon"),
+  color: text("color"),
+  notes: text("notes"),
+  sortOrder: integer("sort_order").notNull().default(0),
+  isActive: integer("is_active").notNull().default(1),
+  createdAt: text("created_at").notNull().default(sql`(datetime('now'))`),
+  updatedAt: text("updated_at").notNull().default(sql`(datetime('now'))`),
+});

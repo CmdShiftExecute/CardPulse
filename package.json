@@ -1,6 +1,6 @@
 {
   "name": "cardpulse",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "A privacy-first credit card expense tracker with smart NLP entry, multi-card billing cycle management, and deep analytics — built entirely offline with SQLite",
   "private": true,
   "scripts": {
