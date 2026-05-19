@@ -6,7 +6,7 @@
 <br />
 
 <h1>
-  <img src="public/logo/cardpulse_logo_sage.svg" alt="" height="56" />
+  <img src="public/logo/cardpulse_logo_sage.svg" alt="" height="52" align="middle" />
   &nbsp;CardPulse
 </h1>
 

@@ -1,12 +1,16 @@
 <div align="center">
 
-[<img src="../public/logo/cardpulse_logo_sage.svg" alt="CardPulse" width="64" />](../README.md)
+<a href="../README.md">
+  <img src="../public/logo/cardpulse_logo_sage.svg" alt="CardPulse" height="72" />
+</a>
 
-**[CardPulse](../README.md)** &middot; Documentation
+## CardPulse Documentation
+
+<sub><a href="../README.md">← Back to overview</a></sub>
 
 </div>
 
-<br />
+---
 
 # 💳 04: Card Management
 
