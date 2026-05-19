@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="public/screenshots/banner.png" alt="CardPulse" width="100%" />
+
 # 💳 CardPulse
 
 ### *Feel your spending rhythm*
@@ -27,10 +29,6 @@ A privacy-first credit card expense tracker with **smart NLP entry**, **multi-ca
 <br />
 
 > 🔒 **Your financial data never leaves your machine.** No cloud. No API calls. No telemetry. Just you and your SQLite database.
-
-<br />
-
-<img src="public/screenshots/dashboard.png" alt="CardPulse Dashboard" width="100%" />
 
 </div>
 
