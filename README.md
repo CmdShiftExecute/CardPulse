@@ -3,14 +3,8 @@
 <img src="public/screenshots/banner.png" alt="CardPulse" width="100%" />
 
 <br />
-<br />
 
-<h1>
-  <img src="public/logo/cardpulse_logo_sage.svg" alt="" height="52" align="middle" />
-  &nbsp;CardPulse
-</h1>
-
-### *Feel your spending rhythm*
+### *A quieter view of your spending.*
 
 A privacy-first credit card expense tracker with **smart NLP entry**, **multi-card billing cycle management**, **6 color themes**, and **deep analytics** — built entirely offline with no cloud dependencies.
 
