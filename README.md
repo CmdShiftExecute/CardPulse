@@ -38,7 +38,7 @@ A privacy-first credit card expense tracker with **smart NLP entry**, **multi-ca
 
 <table>
 <tr>
-<td width="50%">
+<td width="50%" valign="top">
 
 ### 🧠 Smart Transaction Entry
 - **NLP Quick Add** — type `"enoc 200 fab card yesterday"` and the offline parser extracts amount, category, card, date, and labels
@@ -51,6 +51,13 @@ A privacy-first credit card expense tracker with **smart NLP entry**, **multi-ca
 - Statement dates, due dates, credit limits
 - **Credit utilization tracking** with color-coded thresholds
 - **Card aliases** for NLP recognition
+
+### 🏠 Smart Dashboard
+- Per-card spending breakdown
+- Payment ticker with due date countdowns
+- Category & label donuts with click-to-drill
+- Credit utilization overview
+- **💚 Financial Health Card** with 6-level mood face based on debt-to-income ratio
 
 ### 📊 Rich Analytics (7 tabs)
 - **Trends** — overall, category, and label spending over time
@@ -68,13 +75,19 @@ A privacy-first credit card expense tracker with **smart NLP entry**, **multi-ca
 - Flash-prevention for seamless page loads
 
 </td>
-<td width="50%">
+<td width="50%" valign="top">
 
 ### 📦 EMI Tracker
 - Manage installment plans across cards
 - **Auto-generation prompts** each billing cycle
 - Progress tracking with completion dates
 - EMI amounts reflected in card cycle estimates
+
+### 🌱 Survival Summary
+- EMI-page tab: monthly cost-of-living floor
+- **EMI burden + fixed costs** combined into one number
+- **18-month projection chart** as installments roll off
+- Closure schedule of when each EMI ends
 
 ### 🎯 Budget Management
 - Set monthly budgets per category or subcategory
@@ -92,19 +105,6 @@ A privacy-first credit card expense tracker with **smart NLP entry**, **multi-ca
 - PIN security (enable/disable/change)
 - **Database backup & restore**
 - Keyword rules, labels, and categories management
-
-### 🏠 Smart Dashboard
-- Per-card spending breakdown
-- Payment ticker with due date countdowns
-- Category & label donuts with click-to-drill
-- Credit utilization overview
-- **💚 Financial Health Card** with 6-level mood face based on debt-to-income ratio
-
-### 🌱 Survival Summary
-- New EMI-page tab: monthly cost-of-living floor
-- **EMI burden + fixed costs** combined into one number
-- **18-month projection chart** as installments roll off
-- Closure schedule of when each EMI ends
 
 </td>
 </tr>
