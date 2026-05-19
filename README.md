@@ -388,9 +388,7 @@ This project is licensed under the **MIT License** — see the [LICENSE](./LICEN
 
 <div align="center">
 
-**Built with** ☕ **and** 💳
-
-*CardPulse v2.1 — built with passion.*
+*CardPulse v2.1 — fueled by ☕ and a healthy fear of 💳 statements.*
 
 <br />
 
