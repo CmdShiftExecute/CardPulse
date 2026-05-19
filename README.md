@@ -5,11 +5,10 @@
 <br />
 <br />
 
-<img src="public/logo/cardpulse_logo_sage.svg" alt="CardPulse logo" width="96" />
-
-<br />
-
-# 💳 CardPulse
+<h1>
+  <img src="public/logo/cardpulse_logo_sage.svg" alt="" height="56" />
+  &nbsp;CardPulse
+</h1>
 
 ### *Feel your spending rhythm*
 
