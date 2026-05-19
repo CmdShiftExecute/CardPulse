@@ -15,6 +15,7 @@ import {
   Wallet,
   ArrowLeft,
 } from "lucide-react";
+import { AppShell } from "@/components/layout/app-shell";
 import { GeneralSettings } from "@/components/settings/general-settings";
 import { AppearanceSettings } from "@/components/settings/appearance-settings";
 import { SecuritySettings } from "@/components/settings/security-settings";
@@ -121,8 +122,10 @@ function SettingsPageInner() {
 
 export default function SettingsPage() {
   return (
-    <Suspense fallback={<div className="h-32 rounded-card bg-surface-1 border border-border animate-pulse" />}>
-      <SettingsPageInner />
-    </Suspense>
+    <AppShell>
+      <Suspense fallback={<div className="h-32 rounded-card bg-surface-1 border border-border animate-pulse" />}>
+        <SettingsPageInner />
+      </Suspense>
+    </AppShell>
   );
 }

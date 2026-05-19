@@ -15,6 +15,7 @@ import {
   PanelLeftClose,
   PanelLeftOpen,
 } from "lucide-react";
+import { CardPulseLogo } from "@/components/ui/cardpulse-logo";
 
 interface NavItem {
   label: string;
@@ -67,20 +68,19 @@ function Sidebar() {
       >
         {!isIconOnly && (
           <Link href="/dashboard" className="flex items-center gap-2 max-lg:hidden">
+            <CardPulseLogo size={28} className="shrink-0 text-sage-400" />
             <span className="text-xl font-bold text-sage-400">CardPulse</span>
           </Link>
         )}
-        {/* Tablet: show abbreviated logo */}
+        {isIconOnly && (
+          <Link href="/dashboard" className="hidden lg:flex items-center justify-center">
+            <CardPulseLogo size={28} className="text-sage-400" />
+          </Link>
+        )}
+        {/* Tablet: show logo icon */}
         <Link href="/dashboard" className="hidden max-lg:block lg:hidden">
-          <span className="text-lg font-bold text-sage-400">CP</span>
+          <CardPulseLogo size={28} className="text-sage-400" />
         </Link>
-        <button
-          onClick={() => setCollapsed((prev) => !prev)}
-          className="rounded-button p-1.5 text-text-muted hover:text-text-primary hover:bg-surface-3 transition-colors max-lg:hidden"
-          aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-        >
-          {collapsed ? <PanelLeftOpen size={20} /> : <PanelLeftClose size={20} />}
-        </button>
       </div>
 
       {/* Nav */}
@@ -114,13 +114,26 @@ function Sidebar() {
         </ul>
       </nav>
 
-      {/* Footer */}
-      <div className="border-t border-border px-4 py-3 max-lg:hidden">
+      {/* Footer — tagline (expanded) + collapse toggle (always) */}
+      <div
+        className={cn(
+          "border-t border-border max-lg:hidden",
+          isIconOnly ? "px-2 py-3 flex justify-center" : "px-4 py-3 flex items-center justify-between gap-2"
+        )}
+      >
         {!isIconOnly && (
-          <p className="text-xs text-text-muted">
+          <p className="text-xs text-text-muted truncate">
             Feel your spending rhythm
           </p>
         )}
+        <button
+          onClick={() => setCollapsed((prev) => !prev)}
+          className="rounded-button p-1.5 text-text-muted hover:text-text-primary hover:bg-surface-3 transition-colors shrink-0"
+          aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+          title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+        >
+          {collapsed ? <PanelLeftOpen size={18} /> : <PanelLeftClose size={18} />}
+        </button>
       </div>
     </aside>
   );
