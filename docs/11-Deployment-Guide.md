@@ -1,3 +1,13 @@
+<div align="center">
+
+[<img src="../public/logo/cardpulse_logo_sage.svg" alt="CardPulse" width="64" />](../README.md)
+
+**[CardPulse](../README.md)** &middot; Documentation
+
+</div>
+
+<br />
+
 # 🚀 11: Deployment Guide
 
 > How to run CardPulse locally, build for production, manage your database, and deploy to a self-hosted server. CardPulse is designed as a **local-first** app — no cloud services, no external APIs, no data leaving your machine.

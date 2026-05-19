@@ -1,3 +1,13 @@
+<div align="center">
+
+[<img src="../public/logo/cardpulse_logo_sage.svg" alt="CardPulse" width="64" />](../README.md)
+
+**[CardPulse](../README.md)** &middot; Documentation
+
+</div>
+
+<br />
+
 # ⚙️ 08: Settings Reference
 
 > Complete guide to all 8 settings sections — configure currency, themes, security, keywords, labels, and more.

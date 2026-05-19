@@ -1,3 +1,13 @@
+<div align="center">
+
+[<img src="../public/logo/cardpulse_logo_sage.svg" alt="CardPulse" width="64" />](../README.md)
+
+**[CardPulse](../README.md)** &middot; Documentation
+
+</div>
+
+<br />
+
 # 🏗️ 10: Architecture Overview
 
 > Technical deep dive into CardPulse's architecture — stack, project structure, database schema, API routes, NLP pipeline, theming system, and billing cycle math.

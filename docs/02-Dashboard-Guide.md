@@ -1,3 +1,13 @@
+<div align="center">
+
+[<img src="../public/logo/cardpulse_logo_sage.svg" alt="CardPulse" width="64" />](../README.md)
+
+**[CardPulse](../README.md)** &middot; Documentation
+
+</div>
+
+<br />
+
 # 📊 02: Dashboard Guide
 
 > The CardPulse dashboard is a **single-glance financial command center** — everything from payment due dates to credit utilization to spending breakdowns, all in one view.

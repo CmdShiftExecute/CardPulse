@@ -1,3 +1,13 @@
+<div align="center">
+
+[<img src="../public/logo/cardpulse_logo_sage.svg" alt="CardPulse" width="64" />](../README.md)
+
+**[CardPulse](../README.md)** &middot; Documentation
+
+</div>
+
+<br />
+
 # ⚡ 03: Transaction Entry
 
 > CardPulse's **dual-mode entry system** lets you add transactions however you prefer — type a quick sentence and let the NLP parser handle the rest, or fill in every field manually. Both modes feed into the exact same form.

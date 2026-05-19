@@ -1,3 +1,13 @@
+<div align="center">
+
+[<img src="../public/logo/cardpulse_logo_sage.svg" alt="CardPulse" width="64" />](../README.md)
+
+**[CardPulse](../README.md)** &middot; Documentation
+
+</div>
+
+<br />
+
 # 📤 09: Export Reports
 
 > Export your monthly spending data as a **professionally styled XLSX (Excel) report** — complete with color-coded headers, category totals, and label summaries. Perfect for personal records, accountant handoffs, or monthly financial reviews.

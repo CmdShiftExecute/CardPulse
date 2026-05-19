@@ -1,3 +1,13 @@
+<div align="center">
+
+[<img src="../public/logo/cardpulse_logo_sage.svg" alt="CardPulse" width="64" />](../README.md)
+
+**[CardPulse](../README.md)** &middot; Documentation
+
+</div>
+
+<br />
+
 # 💳 04: Card Management
 
 > Credit cards are at the heart of CardPulse. Each card carries its own billing cycle, credit limit, NLP aliases, and color identity — making it easy to track spending, utilization, and payments across your entire portfolio.

@@ -1,3 +1,13 @@
+<div align="center">
+
+[<img src="../public/logo/cardpulse_logo_sage.svg" alt="CardPulse" width="64" />](../README.md)
+
+**[CardPulse](../README.md)** &middot; Documentation
+
+</div>
+
+<br />
+
 # 📦 05: EMI Tracker
 
 > Manage installment plans across all your credit cards — track progress, auto-generate monthly transactions, and never miss a payment.

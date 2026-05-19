@@ -2,6 +2,13 @@
 
 <img src="public/screenshots/banner.png" alt="CardPulse" width="100%" />
 
+<br />
+<br />
+
+<img src="public/logo/cardpulse_logo_sage.svg" alt="CardPulse logo" width="96" />
+
+<br />
+
 # 💳 CardPulse
 
 ### *Feel your spending rhythm*

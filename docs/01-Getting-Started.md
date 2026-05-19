@@ -1,3 +1,13 @@
+<div align="center">
+
+[<img src="../public/logo/cardpulse_logo_sage.svg" alt="CardPulse" width="64" />](../README.md)
+
+**[CardPulse](../README.md)** &middot; Documentation
+
+</div>
+
+<br />
+
 # 🚀 01: Getting Started
 
 > **CardPulse** — Feel your spending rhythm. A local-first credit card expense tracker that runs entirely on your machine, with no cloud dependencies, no external APIs, and no data leaving your browser.

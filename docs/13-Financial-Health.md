@@ -1,3 +1,13 @@
+<div align="center">
+
+[<img src="../public/logo/cardpulse_logo_sage.svg" alt="CardPulse" width="64" />](../README.md)
+
+**[CardPulse](../README.md)** &middot; Documentation
+
+</div>
+
+<br />
+
 # 💚 13: Financial Health Card
 
 > A single card at the top of your dashboard that answers *"how am I doing this month?"* using a six-level mood face — from **Thriving** to **Underwater** — based on the ratio of your monthly commitments to your monthly income.

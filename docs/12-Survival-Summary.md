@@ -1,3 +1,13 @@
+<div align="center">
+
+[<img src="../public/logo/cardpulse_logo_sage.svg" alt="CardPulse" width="64" />](../README.md)
+
+**[CardPulse](../README.md)** &middot; Documentation
+
+</div>
+
+<br />
+
 # 🌱 12: Survival Summary
 
 > A dedicated tab on the EMI page that answers a single question: **how much does my life cost every month, and when do my installments end?** The Survival Summary blends your active EMI burden with your fixed monthly costs to surface a single "cost of living" number — and projects how that number changes as installments close out over the next 18 months.
