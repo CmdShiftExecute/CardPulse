@@ -96,7 +96,7 @@ When CardPulse starts for the very first time, it automatically bootstraps every
 |:----:|:-------------|:--------|
 | 1️⃣ | **Creates the SQLite database** | Single file at `data/cardpulse.db` |
 | 2️⃣ | **Seeds reference data** | 11 categories, 68 subcategories, 29 system labels, 91+ keyword rules for the NLP engine |
-| 3️⃣ | **Applies default settings** | AED currency, DD/MM date format, Sage theme, dark mode |
+| 3️⃣ | **Applies default settings** | USD currency, DD/MM date format, Sage theme, dark mode |
 
 > ✅ **No manual migration steps.** The entire setup happens automatically on the first page load — just install and go.
 
@@ -135,7 +135,7 @@ If you prefer to skip the lock screen (e.g., running locally on a trusted machin
 
 CardPulse offers **two ways** to add transactions — both use the exact same form underneath.
 
-![NLP Quick Add Entry](../public/screenshots/nlp-entry.png)
+![Transactions page with the Quick Add input bar at the top](../public/screenshots/transactions-1-list.png)
 
 ### 🧠 Quick Add (NLP)
 
@@ -146,7 +146,7 @@ fuel 200 mycard yesterday
 ```
 
 ✨ This auto-fills:
-- 💰 **Amount** → AED 200
+- 💰 **Amount** → 200 (in your configured currency)
 - 📂 **Category** → Vehicle > Fuel
 - 💳 **Card** → My Card (matched from alias)
 - 📅 **Date** → Yesterday

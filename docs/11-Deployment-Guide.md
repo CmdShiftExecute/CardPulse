@@ -66,7 +66,7 @@ On the very first run, CardPulse automatically:
 |:----:|:-------|:--------|
 | 1️⃣ | 🗄️ Creates SQLite database | Single file at `data/cardpulse.db` |
 | 2️⃣ | 🌱 Seeds reference data | 11 categories, 68 subcategories, 29 labels, 91+ keyword rules |
-| 3️⃣ | ⚙️ Applies default settings | AED currency, DD/MM dates, Sage theme, dark mode |
+| 3️⃣ | ⚙️ Applies default settings | USD currency, DD/MM dates, Sage theme, dark mode |
 
 > ✅ **Zero configuration required.** No `.env` file editing, no database migrations, no manual setup steps.
 

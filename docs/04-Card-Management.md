@@ -16,7 +16,9 @@
 
 > Credit cards are at the heart of CardPulse. Each card carries its own billing cycle, credit limit, NLP aliases, and color identity — making it easy to track spending, utilization, and payments across your entire portfolio.
 
-![Cards Page](../public/screenshots/cards.png)
+![Cards page — Credit Summary across all cards, then per-card displays](../public/screenshots/cards.png)
+
+The page leads with a **Credit Summary** banner across the top — total credit limit, current usage and available credit aggregated across every active card — then renders each card as a passport-sized panel with its current cycle, statement date, due date, credit limit and utilisation bar.
 
 ---
 
@@ -49,13 +51,31 @@ Each card display shows at a glance:
 
 ## ➕ Adding a Card
 
-Click the **Add Card** button to open the card form. Fill in the required fields and save.
+Click the **+ Add Card** button at the top-right of the Cards page. A side-sheet slides in with the card form.
 
-When you create a card, CardPulse **automatically**:
-1. 🏷️ Creates a matching **label** in the labels table (e.g., "My New Card")
-2. 🧠 Generates **default aliases** from the card name and bank name for NLP matching
+### The flow, step by step
 
-> 💡 You can customize aliases later in the card edit form. See [Card Aliases for NLP](#-card-aliases-for-nlp) below.
+1. **Name** the card — this becomes its display name across the app *and* the auto-created label for filtering. Pick something that reads well in tight UI (`Cashback Plus`, not `My Bank Cashback Plus Premium Mastercard`).
+2. **Bank** — the issuing bank's name. Used in the secondary line under the card title and in default aliases.
+3. **Last 4 digits** (optional) — if filled, displayed as `··· 4521` for at-a-glance disambiguation when you have multiple cards from the same bank.
+4. **Cycle Start / End days** — the days of the month your billing cycle opens and closes. See [Understanding Billing Cycles](#-understanding-billing-cycles) for the math.
+5. **Statement day** — the day the bank publishes your statement (usually equal to or one day after cycle end).
+6. **Due day** — the day payment is due. The relative position to statement day determines whether due falls in the same or next month (see the cycle table below).
+7. **Credit limit** (optional) — enables utilisation tracking. If you leave it blank, utilisation bars and danger thresholds simply don't render for this card.
+8. **Color** — the accent colour used everywhere this card appears (dots, badges, chart bars, borders). Pick distinguishable colours when you have multiple cards.
+9. **Aliases** (optional) — comma-separated short names the NLP parser will recognise. If blank, defaults are auto-generated from the name and bank.
+
+Click **Save**. The card appears immediately on the Cards page and starts collecting data.
+
+### What CardPulse does behind the scenes
+
+When you create a card, the app **automatically**:
+
+1. 🏷️ Creates a matching **label** in the labels table (e.g., `Cashback Plus Card`) so you can filter / chart by card without setting that up separately.
+2. 🧠 Generates **default aliases** from the card name and bank name for NLP matching (e.g., `cashback`, `cashback plus`, `cashback plus card`, `demo bank b`).
+3. 📅 Pre-computes the **current cycle window** so the dashboard, ticker and EMI projections all see it immediately.
+
+> 💡 You can customise aliases later in the card edit form. See [Card Aliases for NLP](#-card-aliases-for-nlp) below.
 
 ---
 
@@ -143,7 +163,7 @@ When a **credit limit** is set on a card, CardPulse tracks utilization across th
 Utilization % = (Cycle Purchases + EMI Installments) / Credit Limit × 100
 ```
 
-> 💡 **Both purchases and EMIs count.** A card with AED 1,000 in purchases and AED 500 in EMI installments against a AED 2,000 limit shows 75% utilization (gold warning).
+> 💡 **Both purchases and EMIs count.** A card with 1,000 in cycle purchases and 500 in EMI installments against a 2,000 credit limit shows 75 % utilisation (gold warning).
 
 > ⚠️ **No credit limit set?** The utilization bar and thresholds are hidden entirely for that card. Set a limit in the card edit form to enable tracking.
 

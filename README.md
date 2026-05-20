@@ -114,95 +114,125 @@ A privacy-first credit card expense tracker with **smart NLP entry**, **multi-ca
 
 ## 📸 Screenshots
 
-<details open>
-<summary><b>🏠 Dashboard</b></summary>
-<br />
-<img src="public/screenshots/dashboard.png" alt="Dashboard" width="100%" />
+### 🏠 Dashboard
+
+The home view leads with a **Financial Health Card** that condenses your monthly commitments into a single survival figure, followed by the Monthly Hero and per-card breakdown.
+
+<img src="public/screenshots/dashboard-1-survival.png" alt="Dashboard — Financial Health Card and Monthly Hero" width="100%" />
+
 <br /><br />
-<img src="public/screenshots/dashboard-donuts.png" alt="Dashboard - Category & Label Donuts" width="100%" />
-</details>
+
+<img src="public/screenshots/dashboard-2-upcoming-payments.png" alt="Dashboard — Upcoming Payments, Top Transactions and EMI Status" width="100%" />
 
 <details>
-<summary><b>⚡ NLP Smart Entry</b></summary>
+<summary><b>More from Dashboard</b></summary>
 <br />
-<img src="public/screenshots/nlp-entry.png" alt="NLP Quick Add" width="100%" />
-</details>
-
-<details>
-<summary><b>📋 Transaction List</b></summary>
-<br />
-<img src="public/screenshots/transactions-list.png" alt="Transactions" width="100%" />
-</details>
-
-<details>
-<summary><b>📈 Analytics — Trends</b></summary>
-<br />
-<img src="public/screenshots/analytics-trends-chart.png" alt="Trends Area Chart" width="100%" />
+<img src="public/screenshots/dashboard-3-category-label-donuts.png" alt="Dashboard — Spend by Category and Label donuts, Recent Transactions" width="100%" />
 <br /><br />
-<img src="public/screenshots/analytics-trends.png" alt="Trends Overview" width="100%" />
+<img src="public/screenshots/dashboard-4-budget-tracking.png" alt="Dashboard — Budget Tracking strip and EMI burden summary" width="100%" />
 <br /><br />
-<img src="public/screenshots/analytics-trends-category.png" alt="Category Trends" width="100%" />
+<img src="public/screenshots/dashboard-5-credit-overview.png" alt="Dashboard — Credit Overview and Card Cycle Status" width="100%" />
 </details>
 
-<details>
-<summary><b>🔀 Analytics — Compare</b></summary>
-<br />
-<img src="public/screenshots/analytics-compare.png" alt="Compare Overview" width="100%" />
+---
+
+### ✏️ Transactions
+
+Add by typing — the offline NLP parser extracts amount, category, card, date, and labels. Switch to manual entry whenever you want full control.
+
+<img src="public/screenshots/transactions-1-list.png" alt="Transactions list with Quick Add input and filters" width="100%" />
+
 <br /><br />
-<img src="public/screenshots/analytics-compare-bars.png" alt="Compare Bars" width="100%" />
+
+<img src="public/screenshots/transactions-2-manual-entry.png" alt="Manual Entry form with amount, date, category, card, labels and notes" width="100%" />
+
+---
+
+### 💳 Cards
+
+<img src="public/screenshots/cards.png" alt="Cards page — billing cycles, credit limits, utilization per card" width="100%" />
+
+---
+
+### 📦 EMIs — Survival & Tracker
+
+A two-tab page. **Survival** turns active installments and fixed costs into a monthly cost-of-living number and projects when each EMI rolls off. **EMI Tracker** manages the installments themselves.
+
+<img src="public/screenshots/emis-1-cost-of-living.png" alt="EMIs — Monthly Cost of Living, EMI Burden by Card, Fixed Monthly Costs" width="100%" />
+
 <br /><br />
-<img src="public/screenshots/analytics-compare-delta.png" alt="Compare Delta Table" width="100%" />
-</details>
+
+<img src="public/screenshots/emis-2-burden-projection.png" alt="EMIs — 18-month Burden Projection chart and Closure Schedule" width="100%" />
 
 <details>
-<summary><b>🍩 Analytics — Monthly Drilldown</b></summary>
+<summary><b>More from EMIs</b></summary>
 <br />
-<img src="public/screenshots/analytics-monthly.png" alt="Monthly Drilldown" width="100%" />
-</details>
-
-<details>
-<summary><b>⏱️ Analytics — Billing Cycles</b></summary>
-<br />
-<img src="public/screenshots/analytics-cycles.png" alt="Billing Cycles" width="100%" />
-</details>
-
-<details>
-<summary><b>💳 Analytics — Cards</b></summary>
-<br />
-<img src="public/screenshots/analytics-cards.png" alt="All Cards" width="100%" />
+<img src="public/screenshots/emis-3-emi-tracker.png" alt="EMI Tracker tab — Generate transactions banner, Cycle Timeline, EMI by Card" width="100%" />
 <br /><br />
-<img src="public/screenshots/analytics-cards-single.png" alt="Single Card Area Chart" width="100%" />
+<img src="public/screenshots/emis-4-active-installments.png" alt="EMI Tracker — Active Installments grid" width="100%" />
 </details>
 
-<details>
-<summary><b>💳 Card Management</b></summary>
-<br />
-<img src="public/screenshots/cards.png" alt="Cards" width="100%" />
-</details>
+---
+
+### 📊 Analytics (7 tabs)
+
+Seven views over the same dataset: long-term trends, month-vs-month comparison, monthly drilldown donuts, billing-cycle timelines, per-card bars, EMI distribution, and budget vs actual.
+
+<img src="public/screenshots/analytics-1-trends.png" alt="Analytics — Trends tab with Overall Spending Trend chart" width="100%" />
+
+<br /><br />
+
+<img src="public/screenshots/analytics-2-compare.png" alt="Analytics — Compare tab with month-vs-month bars and delta table" width="100%" />
 
 <details>
-<summary><b>📦 EMI Tracker</b></summary>
+<summary><b>More from Analytics</b></summary>
 <br />
-<img src="public/screenshots/emis.png" alt="EMIs" width="100%" />
+<img src="public/screenshots/analytics-3-monthly.png" alt="Analytics — Monthly Drilldown with category and label donuts" width="100%" />
+<br /><br />
+<img src="public/screenshots/analytics-4-cycles.png" alt="Analytics — Cycles tab with three-cycle timeline per card" width="100%" />
+<br /><br />
+<img src="public/screenshots/analytics-5-cards.png" alt="Analytics — Cards tab with card-wise spending bars" width="100%" />
+<br /><br />
+<img src="public/screenshots/analytics-6-emi.png" alt="Analytics — EMIs tab with EMI Distribution by Card and Timeline Horizon" width="100%" />
+<br /><br />
+<img src="public/screenshots/analytics-7-budget.png" alt="Analytics — Budgets tab with Budget vs Actual progress bars" width="100%" />
 </details>
 
-<details>
-<summary><b>🌱 Survival Summary</b></summary>
-<br />
-<img src="public/screenshots/survival-summary.png" alt="Survival Summary" width="100%" />
-</details>
+---
+
+### 🎯 Budgets
+
+<img src="public/screenshots/budgets-1-set-budget.png" alt="Budgets page with Set Budget modal" width="100%" />
+
+---
+
+### ⚙️ Settings
+
+Nine sections covering currency, fixed costs, appearance, security, cards, NLP keyword rules, labels, categories, and database export/import. Defaults are sensible; nothing leaves your machine.
+
+<img src="public/screenshots/settings-1-general.png" alt="Settings — General: currency, date format, number format, household income" width="100%" />
+
+<br /><br />
+
+<img src="public/screenshots/settings-5-fixed-costs.png" alt="Settings — Fixed Costs: add monthly obligations with icon and color" width="100%" />
 
 <details>
-<summary><b>💚 Financial Health Card</b></summary>
+<summary><b>More from Settings</b></summary>
 <br />
-<img src="public/screenshots/financial-health.png" alt="Financial Health Card" width="100%" />
+<img src="public/screenshots/settings-2-labels.png" alt="Settings — Labels manager" width="100%" />
+<br /><br />
+<img src="public/screenshots/settings-3-categories.png" alt="Settings — Categories tree (read-only)" width="100%" />
+<br /><br />
+<img src="public/screenshots/settings-4-data-management.png" alt="Settings — Data Management: export, import, reset" width="100%" />
 </details>
 
-<details>
-<summary><b>🎯 Budgets</b></summary>
-<br />
-<img src="public/screenshots/budgets.png" alt="Budgets" width="100%" />
-</details>
+---
+
+### 💚 Financial Health Card — close-up
+
+A standalone view of the dashboard's signature card. Six mood faces map the ratio of monthly commitments to income, from *Thriving* to *Underwater*.
+
+<img src="public/screenshots/dashboard-6-financial-health-card.png" alt="Financial Health Card close-up showing Required to survive next month, card bills, fixed monthly costs and per-card outstanding" width="100%" />
 
 ---
 

@@ -58,7 +58,7 @@ CardPulse generates a **single-sheet Excel report** for any month of transaction
 │  🗓️ Month:  [◀ February 2026 ▶]        │
 │                                         │
 │  💱 Conversion Rate:  [ 1.00 ]          │
-│     (AED → target currency)             │
+│     (source → target currency)          │
 │                                         │
 │  ┌─────────────────────────────────┐    │
 │  │      📥 Export XLSX              │    │
@@ -103,7 +103,7 @@ Row 3+    │  💳 Transaction rows — sorted by category, then by date
           │     ... one row per transaction ...
 Row N     │  ─── Separator ───
 Row N+1   │  📊 Label summary header
-Row N+2+  │  🏷️ Label rows — per-label totals (e.g., "Groceries: AED 1,234.56")
+Row N+2+  │  🏷️ Label rows — per-label totals (e.g. "Groceries: 1,234.56")
 Row Last  │  🧮 Subtotal row — SUM formula for all transaction amounts
 ```
 
@@ -171,7 +171,7 @@ The conversion rate allows you to display amounts in a secondary currency. The r
 | Setting | Description |
 |:--------|:------------|
 | 🔢 **Default** | `1` (no conversion — amounts displayed as-is) |
-| 💱 **Example** | Enter `0.27` to approximate AED → USD conversion |
+| 💱 **Example** | Enter `0.27` if your source currency is roughly 3.67× the target (e.g. converting from a smaller-denominated currency to USD) |
 | 📍 **Location** | Displayed in column G/H of the header area |
 | 🔄 **Effect** | For reference only — amounts in column D remain in your configured currency |
 

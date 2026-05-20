@@ -18,7 +18,9 @@
 
 ---
 
-![Financial Health Card](../public/screenshots/financial-health.png)
+![Financial Health Card close-up showing Required to survive next month, card bills, fixed monthly costs and per-card outstanding](../public/screenshots/dashboard-6-financial-health-card.png)
+
+The full-context shot of the same card sitting at the top of the dashboard (with the Monthly Hero below) lives in [02: Dashboard Guide](./02-Dashboard-Guide.md#-financial-health-card).
 
 ---
 

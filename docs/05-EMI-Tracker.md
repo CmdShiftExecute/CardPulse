@@ -18,7 +18,9 @@
 
 ---
 
-![EMI Tracker](../public/screenshots/emis.png)
+![EMI Tracker — Generate prompt, Cycle Timeline and EMI by Card](../public/screenshots/emis-3-emi-tracker.png)
+
+The EMI page has **two tabs**: **Survival** (default — covered in [12: Survival Summary](./12-Survival-Summary.md)) and **EMI Tracker** (this page). The Tracker tab opens with a *Generate transactions* prompt if any cycles are due, then surfaces the timeline and per-card breakdown.
 
 ---
 
@@ -177,13 +179,17 @@ Each EMI card displays a visual progress bar showing how far along the installme
 📱 Smart Device
    Example Card  ···XXXX
 
-   AED 400 / month
-   Original: AED 5,000
+   400 / month
+   Original: 5,000
 
    ████████████░░░░░░  8 of 12 paid
    4 months remaining
    Completes: Jun 2026
 ```
+
+![EMI Tracker — Active Installments grid](../public/screenshots/emis-4-active-installments.png)
+
+The **Active Installments** grid further down the EMI Tracker tab gives each running plan its own panel: monthly amount, paid/total bar, principal remaining, and quick actions to edit or close the plan.
 
 **How progress is calculated:**
 
@@ -226,10 +232,10 @@ On both the **Dashboard** (Card Cycle Status section) and the **Analytics > Cycl
 │  Example Card   ···XXXX           │
 │  Cycle: 2 Jan → 1 Feb            │
 │                                   │
-│  🛒 New Purchases     AED X,XXX   │
-│  📦 EMI Installments  AED   XXX   │
+│  🛒 New Purchases     X,XXX       │
+│  📦 EMI Installments    XXX       │
 │  ──────────────────────────       │
-│  📋 Estimated Bill    AED X,XXX   │
+│  📋 Estimated Bill    X,XXX       │
 │                                   │
 │  ██████████░░░░  63% of limit     │
 └───────────────────────────────────┘

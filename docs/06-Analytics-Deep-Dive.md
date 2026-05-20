@@ -58,7 +58,7 @@ A global **month navigator** (`← Month Year →`) controls the time period for
 
 The Trends tab is organized into **three sections**, each with a row of **insight stat cards** followed by an **interactive area chart** with an in-chart dropdown selector.
 
-![Trends Overview](../public/screenshots/analytics-trends.png)
+![Analytics — Trends tab](../public/screenshots/analytics-1-trends.png)
 
 ---
 
@@ -73,8 +73,6 @@ The Trends tab is organized into **three sections**, each with a row of **insigh
 | 📅 **Months Tracked** | Count of months from your first to last transaction |
 
 **Area Chart:** Total spending trend over up to 12 months. Single sage-green series with gradient fill — no overlapping categories.
-
-![Trends Chart](../public/screenshots/analytics-trends-chart.png)
 
 ---
 
@@ -92,8 +90,6 @@ The Trends tab is organized into **three sections**, each with a row of **insigh
 
 - 🔹 **All Categories** — shows total spending (default)
 - 🔹 **Individual categories** — select any category to see its isolated trend
-
-![Category Trends](../public/screenshots/analytics-trends-category.png)
 
 #### 🔍 Subcategory Drill-Down
 
@@ -129,7 +125,7 @@ Category dropdown: [Food & Drinks ▾]
 
 The Compare tab has its **own independent month pickers** — the global month navigator is hidden when this tab is active.
 
-![Compare Overview](../public/screenshots/analytics-compare.png)
+![Analytics — Compare tab](../public/screenshots/analytics-2-compare.png)
 
 ---
 
@@ -158,8 +154,6 @@ Two side-by-side pickers with `◀ ▶` navigation:
 
 Grouped bars showing **Month 1** (sage green) and **Month 2** (periwinkle) side-by-side for each category. Hover tooltips show both values and the total.
 
-![Compare Bars](../public/screenshots/analytics-compare-bars.png)
-
 ---
 
 ### 📋 Category Delta Table
@@ -175,8 +169,6 @@ An expandable table with color-coded deltas:
 | 📈 **% Change** | Percentage change (🟢 green = saved, 🔴 red = spent more) |
 
 **Click any category row** to expand and see **subcategory-level breakdown** with the same delta columns. This reveals exactly which subcategories drove the spending change.
-
-![Compare Delta](../public/screenshots/analytics-compare-delta.png)
 
 ---
 
@@ -197,7 +189,7 @@ An expandable table with color-coded deltas:
 
 Two side-by-side **interactive donut charts** (190px diameter) for the selected month.
 
-![Monthly Drilldown](../public/screenshots/analytics-monthly.png)
+![Analytics — Monthly Drilldown with category and label donuts](../public/screenshots/analytics-3-monthly.png)
 
 ---
 
@@ -225,7 +217,7 @@ Two side-by-side **interactive donut charts** (190px diameter) for the selected 
 
 A **3-column timeline** for each active credit card, showing the full billing cycle lifecycle.
 
-![Cycles Timeline](../public/screenshots/analytics-cycles.png)
+![Analytics — Cycles tab with three-cycle timeline per card](../public/screenshots/analytics-4-cycles.png)
 
 ---
 
@@ -270,7 +262,7 @@ A **3-column timeline** for each active credit card, showing the full billing cy
 
 > *Per-card spending history.*
 
-![Cards All](../public/screenshots/analytics-cards.png)
+![Analytics — Cards tab](../public/screenshots/analytics-5-cards.png)
 
 ---
 
@@ -291,13 +283,13 @@ A row of selectable buttons at the top of the chart:
 
 Click a specific card pill to switch to an **individual area chart** with gradient fill in the card's assigned color. Shows a single spending trend line over 12 months.
 
-![Cards Single](../public/screenshots/analytics-cards-single.png)
-
 ---
 
 ## 6. 📦 EMIs
 
 > *Active installment plan landscape.*
+
+![Analytics — EMIs tab with monthly burden, distribution by card and timeline horizon](../public/screenshots/analytics-6-emi.png)
 
 Shows all active EMIs in a visual layout:
 
@@ -315,17 +307,17 @@ For full EMI management (adding, editing, auto-generation), see [EMI Tracker](./
 
 > *Budget vs. actual spending.*
 
-![Budgets in Analytics](../public/screenshots/analytics-budgets.png)
+![Analytics — Budgets tab with Budget vs Actual progress bars and over-budget warnings](../public/screenshots/analytics-7-budget.png)
 
 Shows budget progress for each category/subcategory with an active budget:
 
 | Element | Description |
 |---------|-------------|
-| 📂 **Category Name** | The budgeted category (and subcategory if set) |
-| 💰 **Budget Amount** | Monthly spending limit |
-| 📊 **Progress Bar** | Visual fill with threshold colors |
-| 🔢 **Actual vs Budget** | e.g., "AED 496 / AED 800" |
-| 📈 **Percentage** | e.g., "62% spent" |
+| 📂 **Category Name**    | The budgeted category (and subcategory if set) |
+| 💰 **Budget Amount**    | Monthly spending limit |
+| 📊 **Progress Bar**     | Visual fill with threshold colors |
+| 🔢 **Actual vs Budget** | e.g., `USD 1,753.00 / USD 1,500.00` with an over-by line when relevant |
+| 📈 **Percentage**       | e.g., `117 %` |
 
 **Threshold colors:**
 
@@ -352,7 +344,7 @@ All charts across CardPulse follow these consistent design rules:
 | 🌈 **Gradient fills** | Area charts use gradient fills from 20% opacity at the top to 0% at the bottom |
 | 🎭 **Theme-aware colors** | All chart colors read from CSS variables, updating instantly on theme switch |
 | 💬 **Shared tooltips** | Consistent tooltip design across all charts — colored dot + name + amount, with optional total row |
-| 🔤 **Formatted axes** | Y-axis shows `AED 0`, `AED 5k`, `AED 10k` etc. via `formatYAxis()` utility |
+| 🔤 **Formatted axes** | Y-axis shows the configured currency with `k` suffix at thousands (e.g. `USD 0`, `USD 5k`, `USD 10k`) via `formatYAxis()` |
 
 ---
 

@@ -46,7 +46,9 @@ CardPulse offers **dual-mode input** at the top of the Transactions page:
 
 > 🔄 Both modes populate the **same underlying form**. Quick Add pre-fills fields where possible; Manual Entry starts empty. Switch between modes freely using the tab toggle.
 
-![Transaction Entry — Quick Add Mode](../public/screenshots/nlp-entry.png)
+![Transactions list with the Quick Add input bar at the top](../public/screenshots/transactions-1-list.png)
+
+The Quick Add input sits at the very top of the Transactions page. Below it: filter chips, a transaction count + monthly total, and the full list.
 
 ---
 
@@ -72,7 +74,7 @@ The parser runs **4 stages** in sequence. Each stage is independent — if one f
 ┌──────────────────────────────────────────────────────┐
 │  "fuel 200 mycard yesterday"                         │
 │                                                      │
-│  Stage 1: 💰 Amount Extraction ──→ AED 200           │
+│  Stage 1: 💰 Amount Extraction ──→ 200               │
 │  Stage 2: 💳 Card Matching ─────→ My Premium Card    │
 │  Stage 3: 📅 Date Detection ────→ Yesterday          │
 │  Stage 4: 🏷️ Keyword Matching ──→ Vehicle > Fuel     │
@@ -89,10 +91,12 @@ Recognizes numbers with optional currency codes and formatting:
 
 | Pattern | Example | Result |
 |:--------|:--------|:-------|
-| Plain number | `200`, `45.50` | AED 200, AED 45.50 |
-| With commas | `1,234.56` | AED 1,234.56 |
-| Currency prefix | `AED 200` | AED 200 |
-| Currency suffix | `200 AED` | AED 200 |
+| Plain number    | `200`, `45.50`  | 200, 45.50 (in your configured currency) |
+| With commas     | `1,234.56`      | 1,234.56 |
+| Currency prefix | `USD 200`       | 200 |
+| Currency suffix | `200 USD`       | 200 |
+
+> The currency code is whatever you've set in **Settings → General**. The parser recognises any 3-letter currency code in either position.
 
 > 💡 If multiple numbers are found, the parser uses the most likely amount (skipping values that look like dates or years).
 
@@ -139,13 +143,13 @@ Runs remaining text against **91+ keyword rules** using Fuse.js:
 
 | Input | 💰 Amount | 📂 Category | 💳 Card | 📅 Date | 🏷️ Labels |
 |:------|:----------|:------------|:--------|:--------|:----------|
-| `fuel 200 mycard` | AED 200 | Vehicle > Fuel | My Card | Today | Vehicle Expenses, My Card |
-| `talabat 85 yesterday` | AED 85 | Food & Drinks > Restaurant, Fast-Food | — | Yesterday | Food Delivery |
-| `netflix 55` | AED 55 | Life & Entertainment > TV, Streaming | — | Today | Subscriptions, Bills and Subs |
-| `bought shoes 400` | AED 400 | Shopping > Clothes & Shoes | — | Today | — |
-| `random thing 150` | AED 150 | *User selects* | — | Today | — |
-| `paid 300 for AC repair` | AED 300 | Housing > Maintenance, Repairs | — | Today | — |
-| `200` | AED 200 | *User selects* | — | Today | — |
+| `fuel 200 mycard`         | 200 | Vehicle > Fuel | My Card | Today | Vehicle Expenses, My Card |
+| `food delivery 85 yesterday` | 85  | Food & Drinks > Restaurant, Fast-Food | — | Yesterday | Food Delivery |
+| `netflix 55`              | 55  | Life & Entertainment > TV, Streaming | — | Today | Subscriptions, Bills and Subs |
+| `bought shoes 400`        | 400 | Shopping > Clothes & Shoes | — | Today | — |
+| `random thing 150`        | 150 | *User selects* | — | Today | — |
+| `paid 300 for AC repair`  | 300 | Housing > Maintenance, Repairs | — | Today | — |
+| `200`                     | 200 | *User selects* | — | Today | — |
 
 > 💡 **Notice the graceful degradation:** From fully parsed (`fuel 200 mycard`) to bare minimum (`200`), the form always works. You just fill in what the parser couldn't figure out.
 
@@ -185,12 +189,16 @@ Click **Yes** to save your correction as a new keyword rule:
 
 Switch to the **Manual Entry** tab to get a completely empty form:
 
+![Manual Entry — full field-by-field form](../public/screenshots/transactions-2-manual-entry.png)
+
 - 🚫 No NLP parsing happens
 - 🚫 No confidence dots shown
 - 🚫 No learn prompt appears
 - ✅ All fields blank and ready for input
 
 > 💡 **Use Manual Entry** when you want full control, when the input doesn't suit natural-language parsing, or when you're entering a transaction with specific fields already in mind.
+
+The form is the same one Quick Add pre-fills, just empty: Amount, Date, Category, Subcategory, Card (defaults to *None / Cash-Bank*), Labels and Notes. **Save** closes the form; **Save & Add Another** keeps it open for rapid back-to-back entries.
 
 ---
 
@@ -222,9 +230,7 @@ The **same form** is used across Quick Add, Manual Entry, and Edit modes:
 
 ## 📃 Transaction List
 
-The main transactions page shows all transactions in a table:
-
-![Transaction List](../public/screenshots/transactions-list.png)
+The main transactions page shows all transactions in a table — see the [first screenshot at the top of this guide](#-two-entry-modes) for the full layout.
 
 Each row displays:
 - 📅 **Date** (formatted per your settings)

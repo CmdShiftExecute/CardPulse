@@ -315,7 +315,7 @@ Application configuration stored as key-value pairs.
 
 | Key | Default Value | Description |
 |:----|:-------------|:------------|
-| 💱 `currency` | `AED` | Display currency code |
+| 💱 `currency` | `USD` | Display currency code |
 | 📅 `date_format` | `DD/MM` | Date display format |
 | 🔢 `number_format` | `comma_period` | Number formatting style (`1,234.56` or `1.234,56`) |
 | 🔐 `pin_enabled` | `true` | PIN lock screen toggle |
@@ -646,9 +646,9 @@ document.documentElement.dataset.mode = mode;
 
 | Function | Input | Output | Example |
 |:---------|:------|:-------|:--------|
-| `getCurrency()` | — | Currency code | `"AED"` |
-| `formatAmount(n)` | `1234.56` | Formatted string | `"AED 1,234.56"` |
-| `formatChartAxis(n)` | `15000` | Compact axis label | `"AED 15k"` |
+| `getCurrency()` | — | Currency code | `"USD"` |
+| `formatAmount(n)` | `1234.56` | Formatted string | `"USD 1,234.56"` |
+| `formatChartAxis(n)` | `15000` | Compact axis label | `"USD 15k"` |
 | `formatDate(s)` | `"2026-02-10"` | Formatted date | `"10/02/2026"` |
 | `getFormatSettings()` | — | Settings object | `{ currency, numberFormat, dateFormat }` |
 | `invalidateFormatCache()` | — | void | Clears module-level cache after settings update |
@@ -657,7 +657,7 @@ document.documentElement.dataset.mode = mode;
 
 | Style | Pattern | Example | Locale |
 |:------|:--------|:--------|:-------|
-| `comma_period` | `1,234.56` | Default (US/UAE) | `en-US` |
+| `comma_period` | `1,234.56` | Default (US / UK / most international) | `en-US` |
 | `period_comma` | `1.234,56` | European | `de-DE` |
 
 ---

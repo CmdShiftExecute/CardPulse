@@ -14,7 +14,7 @@
 
 # ⚙️ 08: Settings Reference
 
-> Complete guide to all 8 settings sections — configure currency, themes, security, keywords, labels, and more.
+> Complete guide to all 9 settings sections — configure currency, fixed costs, themes, security, keywords, labels, categories, and database management.
 
 ---
 
@@ -22,19 +22,20 @@
 
 - [Overview](#-overview)
 - [1. General](#1--general)
-- [2. Appearance](#2--appearance)
-- [3. Security](#3--security)
-- [4. Cards](#4--cards)
-- [5. Keywords](#5--keywords)
-- [6. Labels](#6--labels)
-- [7. Categories](#7--categories)
-- [8. Data Management](#8--data-management)
+- [2. Fixed Costs](#2--fixed-costs)
+- [3. Appearance](#3--appearance)
+- [4. Security](#4--security)
+- [5. Cards](#5--cards)
+- [6. Keywords](#6--keywords)
+- [7. Labels](#7--labels)
+- [8. Categories](#8--categories)
+- [9. Data Management](#9--data-management)
 
 ---
 
 ## 🗺️ Overview
 
-The Settings page (`/settings`) uses a **horizontal pill-based navigation** with 8 sections. Each section manages a different aspect of the application.
+The Settings page (`/settings`) uses a **horizontal pill-based navigation** with 9 sections. Each section manages a different aspect of the application.
 
 **Key facts:**
 
@@ -47,7 +48,9 @@ The Settings page (`/settings`) uses a **horizontal pill-based navigation** with
 
 ## 1. 🌐 General
 
-> Currency, date format, and number format preferences.
+> Currency, date format, number format, and household income for the Financial Health card.
+
+![Settings — General: currency, date format, number format, household income](../public/screenshots/settings-1-general.png)
 
 ---
 
@@ -55,22 +58,14 @@ The Settings page (`/settings`) uses a **horizontal pill-based navigation** with
 
 Choose the currency code displayed throughout the app — in amounts, charts, exports, and the payment ticker.
 
-**Supported currencies:**
+Two modes:
 
-| Code | Currency | Symbol |
-|------|----------|--------|
-| 🇦🇪 **AED** | UAE Dirham | د.إ |
-| 🇺🇸 **USD** | US Dollar | $ |
-| 🇪🇺 **EUR** | Euro | € |
-| 🇬🇧 **GBP** | British Pound | £ |
-| 🇮🇳 **INR** | Indian Rupee | ₹ |
-| 🇸🇦 **SAR** | Saudi Riyal | ﷼ |
-| 🇶🇦 **QAR** | Qatari Riyal | ر.ق |
-| 🇰🇼 **KWD** | Kuwaiti Dinar | د.ك |
-| 🇧🇭 **BHD** | Bahraini Dinar | .د.ب |
-| 🇴🇲 **OMR** | Omani Rial | ر.ع |
+- **Preset** — pick from a built-in dropdown of common codes (USD, EUR, GBP, INR, AED, SAR and others).
+- **Custom** — type any 3-letter code. Useful for currencies not in the preset list.
 
-> ⚠️ **Important:** Changing the currency only affects the **display label** — it does not convert existing amounts. All amounts remain stored as raw numbers in the database. If you switch from AED to USD, your "200" transaction will display as "USD 200" instead of "AED 200".
+**Default:** USD. The 3-letter code is what the UI renders next to every number; CardPulse does not perform currency conversion.
+
+> ⚠️ **Important:** Changing the currency only affects the **display label** — it does not convert existing amounts. All amounts remain stored as raw numbers in the database. If you switch from USD to EUR, a `200` transaction simply re-renders as `EUR 200` instead of `USD 200`.
 
 ---
 
@@ -80,8 +75,8 @@ Choose how dates are displayed throughout the app:
 
 | Option | Example | Convention |
 |--------|---------|------------|
-| **DD/MM** | 10/02/2026 | 🇦🇪 UAE / 🇬🇧 UK / 🇪🇺 EU standard (default) |
-| **MM/DD** | 02/10/2026 | 🇺🇸 US standard |
+| **DD/MM** | 20/05/2026 | UK / EU / most-of-the-world standard (default) |
+| **MM/DD** | 05/20/2026 | US standard |
 
 ---
 
@@ -91,12 +86,59 @@ Choose how numbers (amounts) are formatted:
 
 | Option | Example | Convention |
 |--------|---------|------------|
-| **1,234.56** | Comma thousands, period decimal | 🇺🇸 US / 🇦🇪 UAE standard (default) |
-| **1.234,56** | Period thousands, comma decimal | 🇪🇺 European standard |
+| **1,234.56** | Comma thousands, period decimal | US / UK / most international (default) |
+| **1.234,56** | Period thousands, comma decimal | Most-of-Europe standard |
 
 ---
 
-## 2. 🎨 Appearance
+### 💵 Household Income (monthly)
+
+Optional. The single number that drives the **Financial Health Card** on the dashboard. The card divides your monthly commitments (next-cycle card bills + fixed costs) by this number and maps the ratio to a six-level mood face.
+
+- Leave blank to hide the Financial Health Card entirely (the card surfaces a *Set income* CTA in that state).
+- Stored locally like every other setting — it never leaves your machine.
+- Update any time; the dashboard re-computes on next mount.
+
+See [13: Financial Health Card](./13-Financial-Health.md) for the full ratio-to-mood mapping.
+
+---
+
+## 2. 🏠 Fixed Costs
+
+> Your baseline cost of living — rent, utilities, recurring obligations — captured as monthly amounts. Feeds the Survival Summary and the Financial Health Card.
+
+![Settings — Fixed Costs: add monthly obligations with icon and color](../public/screenshots/settings-5-fixed-costs.png)
+
+### Why it exists
+
+The dashboard's Financial Health Card and the EMI page's Survival Summary both need to know what you *must* pay every month, regardless of discretionary spending. Fixed Costs is where that ground truth lives.
+
+### Adding a fixed cost
+
+Click **+ Add fixed cost** to open the inline form:
+
+| Field | Required | Description |
+|:------|:--------:|:------------|
+| 🏷️ **Name**          | ✅ | e.g. *Rent*, *Internet*, *Health insurance* |
+| 💰 **Monthly amount** | ✅ | In your configured currency |
+| 🎨 **Icon**           | ✅ | One of 11 preset Lucide icons (Home, Wifi, Zap, Pill, etc.) |
+| 🌈 **Color**          | ✅ | One of 10 preset accent colors |
+
+A running **Total / month** appears at the top-right and updates live as you add, edit and remove entries.
+
+### Editing and deleting
+
+Each row in the list has inline **Edit** and **Delete** affordances. Deleting is irreversible at the row level, but every change is recorded as part of the DB you can back up — see [Data Management](#9--data-management) for full safety nets.
+
+### Keep them honest
+
+Fixed Costs only works if the inputs are the **floor**, not your typical spend. Things like *"I might travel next month"* don't belong here — that's discretionary. The list should be roughly equal to *"the minimum I owe each month even if I do nothing fun"*.
+
+> 📖 Deep dive: [12: Survival Summary](./12-Survival-Summary.md)
+
+---
+
+## 3. 🎨 Appearance
 
 > Theme and color mode settings — 6 themes x 2 modes = 12 visual combinations.
 
@@ -148,7 +190,7 @@ A **flash-prevention script** in the root layout reads your saved preference fro
 
 ---
 
-## 3. 🔒 Security
+## 4. 🔒 Security
 
 > PIN lock screen protection — enable, disable, or change your PIN.
 
@@ -189,7 +231,7 @@ To change your existing PIN:
 
 ---
 
-## 4. 💳 Cards
+## 5. 💳 Cards
 
 > Quick access to card management.
 
@@ -199,7 +241,7 @@ For complete details on card fields, billing cycles, aliases, and credit utiliza
 
 ---
 
-## 5. 🔑 Keywords
+## 6. 🔑 Keywords
 
 > Manage the keyword rules that power the NLP parser's auto-categorization.
 
@@ -252,9 +294,11 @@ Type a test phrase into the keyword tester to see what the NLP parser would matc
 
 ---
 
-## 6. 🏷️ Labels
+## 7. 🏷️ Labels
 
 > Manage transaction labels — system labels are protected, custom labels are yours to create.
+
+![Settings — Labels manager with system labels and Add Label affordance](../public/screenshots/settings-2-labels.png)
 
 ---
 
@@ -282,9 +326,11 @@ Add your own labels for personalized transaction tagging:
 
 ---
 
-## 7. 📂 Categories
+## 8. 📂 Categories
 
 > A read-only reference view of the complete category tree.
+
+![Settings — Categories tree (read-only) with 11 categories and 68 subcategories](../public/screenshots/settings-3-categories.png)
 
 **11 main categories** with **68 subcategories** are displayed in a hierarchical tree view. Categories and subcategories are pre-seeded during first run and **cannot be modified** — they provide the fixed organizational structure for all transactions.
 
@@ -306,9 +352,11 @@ For the complete subcategory listing, see [Architecture Overview](./10-Architect
 
 ---
 
-## 8. 💾 Data Management
+## 9. 💾 Data Management
 
 > Database backup, restore, and reset functions.
+
+![Settings — Data Management: export, import, reset](../public/screenshots/settings-4-data-management.png)
 
 ---
 

@@ -18,7 +18,7 @@
 
 ---
 
-![Survival Summary](../public/screenshots/survival-summary.png)
+![EMIs — Survival tab with Monthly Cost of Living, EMI Burden by Card and Fixed Monthly Costs](../public/screenshots/emis-1-cost-of-living.png)
 
 ---
 
@@ -110,6 +110,8 @@ If you haven't added any fixed costs yet, the panel shows an empty-state CTA lin
 ---
 
 ## 📈 18-Month Projection Chart
+
+![EMIs — 18-month Burden Projection chart and Closure Schedule](../public/screenshots/emis-2-burden-projection.png)
 
 A theme-coloured area chart projects your monthly cost of living for the next 18 months. Each month, the chart subtracts the monthly amounts of any EMIs that complete in or before that month, leaving you with `(remaining EMIs + fixed costs)`.
 

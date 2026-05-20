@@ -18,7 +18,9 @@
 
 ---
 
-![Budgets Page](../public/screenshots/budgets.png)
+![Budgets page with the Set Budget modal open](../public/screenshots/budgets-1-set-budget.png)
+
+The Budgets page leads with a month navigator and an empty-state target icon when nothing's been set yet. Click **+ Set Budget** to open the modal — pick a category, enter the monthly limit, and save. The page immediately populates with progress cards for each budget you've configured.
 
 ---
 
@@ -68,10 +70,12 @@ The Budgets page (`/budgets`) lets you set **monthly spending limits** per categ
 
 | Category | Subcategory | Amount | What It Tracks |
 |----------|-------------|--------|----------------|
-| Food & Drinks | — | AED 2,000 | All food spending combined |
-| Food & Drinks | Groceries | AED 800 | Grocery spending only |
-| Vehicle | Fuel | AED 500 | Fuel expenses only |
-| Life & Entertainment | — | AED 1,000 | All entertainment spending |
+| Food & Drinks        | —          | 2,000 | All food spending combined |
+| Food & Drinks        | Groceries  | 800   | Grocery spending only |
+| Vehicle              | Fuel       | 500   | Fuel expenses only |
+| Life & Entertainment | —          | 1,000 | All entertainment spending |
+
+> Amounts above are illustrative — in the app they're shown in your configured currency.
 
 ---
 
@@ -82,12 +86,12 @@ Each budget appears as a card with a visual progress indicator:
 ```
 ┌──────────────────────────────────────────┐
 │  🍽️  Food & Drinks                       │
-│  Groceries                    AED 800    │
+│  Groceries                          800  │
 │                                          │
-│  ████████░░░░░░░░░░░░  62% spent         │
-│  AED 496 / AED 800                       │
+│  ████████░░░░░░░░░░░░  62 % spent        │
+│  496 / 800                               │
 │                                          │
-│  AED 304 remaining                       │
+│  304 remaining                           │
 └──────────────────────────────────────────┘
 ```
 
@@ -96,7 +100,7 @@ Each budget appears as a card with a visual progress indicator:
 - 📂 **Category** and subcategory (if set)
 - 💰 **Budget amount** — the spending limit you defined
 - 📊 **Progress bar** — fills based on `actual spending / budget amount`
-- 🔢 **Spent vs budget** — e.g., "AED 496 / AED 800"
+- 🔢 **Spent vs budget** — e.g., `496 / 800`
 - 💵 **Remaining** — how much headroom is left
 
 The progress bar color changes dynamically based on how close you are to the limit (see thresholds below).
