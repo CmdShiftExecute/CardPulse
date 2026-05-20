@@ -122,8 +122,8 @@ function Sidebar() {
         )}
       >
         {!isIconOnly && (
-          <p className="text-xs text-text-muted truncate">
-            Feel your spending rhythm
+          <p className="text-[11px] leading-snug text-text-muted italic">
+            CardPulse v2.1 — fueled by ☕ and a healthy fear of 💳 statements.
           </p>
         )}
         <button
